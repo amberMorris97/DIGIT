@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import ArtistForm from './ArtistForm.jsx';
 
 const App = () => {
 
-  return (<h1>Hello World</h1>)
+  return (<ArtistForm />)
 }
 
 export default App;
