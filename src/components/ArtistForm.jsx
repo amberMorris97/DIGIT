@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import artist_form from './helpers/forms';
-import submitArtist from './helpers/api';
+import apiHandler from './helpers/api';
 
 const ArtistForm = () => {
   const [artist, setArtist] = useState('');
@@ -19,7 +19,7 @@ const ArtistForm = () => {
     e.preventDefault();
 
     // call to API
-    submitArtist(artist, genre, url);
+    apiHandler.submitArtist(artist, genre, url);
   };
 
   return (
