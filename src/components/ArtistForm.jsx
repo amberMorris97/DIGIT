@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import artist_form from './helpers/forms';
 import apiHandler from './helpers/api';
 
-const ArtistForm = () => {
+const ArtistForm = ({ token }) => {
   const [artist, setArtist] = useState('');
   const [genre, setGenre] = useState('');
   const [url, setUrl] = useState('');
@@ -19,8 +19,16 @@ const ArtistForm = () => {
     e.preventDefault();
 
     // call to API
-    apiHandler.submitArtist(artist, genre, url);
+    apiHandler.submitArtist(artist, genre, url, token);
   };
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+
+    const artistId = apiHandler.searchArtist(artist, token);
+
+    // Get Search ID
+  }
 
   return (
     <div>
@@ -38,7 +46,7 @@ const ArtistForm = () => {
           Url: {' '}
           <input type="text" name="artist" value={url} />
         </label>
-        <input type="submit" onClick={(e) => submitHandler(e)} />
+        <input type="submit" value="Search" onClick={(e) => searchHandler(e)} />
       </form>
     </div>
   )

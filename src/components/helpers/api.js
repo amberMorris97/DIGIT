@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { CLIENT_ID, CLIENT_SECRET, SPOTIFY_TOKEN, SPOTIFY_SEARCH } = require('./secrets');
 
 const apiHandler = {
   submitArtist: async (artist, genre, url) => {
@@ -11,9 +12,6 @@ const apiHandler = {
 
   // fetching spotify token required for client interaction
   fetchToken: async () => {
-    const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-    const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
-
     const authParams = {
       method: 'POST',
       headers: {
@@ -22,11 +20,24 @@ const apiHandler = {
       body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
     }
 
-    const response = await fetch('https://accounts.spotify.com/api/token', authParams);
+    const response = await fetch(SPOTIFY_TOKEN, authParams);
     const data = await response.json();
     const token = data.access_token;
 
     return token;
+    },
+
+    searchArtist: async (artist, token) => {
+      const artistParams = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+      }
+      const response = await fetch(SPOTIFY_SEARCH + artist + '&type=artist', artistParams);
+      const data = await response.json();
+      console.log(data);
     }
 };
 

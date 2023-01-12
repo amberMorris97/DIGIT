@@ -12,7 +12,7 @@ const App = () => {
     setAccessToken(token);
   }, []);
 
-  return (<ArtistForm />)
+  return (<ArtistForm token={accessToken} />)
 }
 
 export default App;
