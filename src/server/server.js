@@ -40,7 +40,7 @@ app.get('/search', async (req, res) => {
   let response;
 
   try {
-    response = await axios.get(`https://api.spotify.com/v1/search/?q=${artist}&type=artist`, authParams);
+    response = await axios.get(`${SPOTIFY_SEARCH}${artist}&type=artist`, authParams);
   } catch (e) {
     throw new Error(e);
   }

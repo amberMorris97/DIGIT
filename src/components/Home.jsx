@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPrimaryArtist } from '../redux/actions/spotifyApiActions';
+import {
+  setPrimaryArtist,
+  setArtistOne,
+  setArtistTwo,
+  setArtistThree } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
+import Selections from './Selections.jsx';
 import axios from 'axios';
 
 const Home = () => {
@@ -9,9 +14,16 @@ const Home = () => {
   const [artistName, setArtistName] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-
   const token = useSelector(state => state.spotifyApiReducer.token);
-  const primaryArtistId = useSelector(state => state.spotifyApiReducer.primaryArtist);
+  const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
+  const artistOne = useSelector(state => state.spotifyApiReducer.artistOne);
+  const artistTwo = useSelector(state => state.spotifyApiReducer.artistTwo);
+  const artistThree = useSelector(state => state.spotifyApiReducer.artistThree);
+
+  const clearSearchResults = () => {
+    setArtistName('');
+    setSearchResults([]);
+  }
 
   const handleOnChange = async (e) => {
     const { name, value } = e.target;
@@ -22,7 +34,7 @@ const Home = () => {
 
     if (value.length < 3) {
       setSearchResults([]);
-    }
+    };
 
     let results;
     if (value.length > 3) {
@@ -35,32 +47,45 @@ const Home = () => {
 
     if (results) {
       setSearchResults([...results.data.artists.items]);
-    }
-
+    };
   }
 
-  const handleSelect = (e) => {
+  const handleSelect = (e, img, url) => {
     e.preventDefault();
+
     const { id } = e.target;
+    const data = { id, img, url };
 
-    if (!primaryArtistId.length && id) {
-      dispatch(setPrimaryArtist(id));
+    if (data) {
+      clearSearchResults();
+
+      if (!primaryArtist.id) {
+        dispatch(setPrimaryArtist(data));
+        return;
+      }
+
+      if (!artistOne.id) {
+        dispatch(setArtistOne(data));
+        return;
+      }
+
+      if (!artistTwo.id) {
+        dispatch(setArtistTwo(data));
+        return;
+      }
+
+      if (!artistThree.id) {
+        dispatch(setArtistThree(data));
+        return;
+      }
     }
-  }
 
-  if (primaryArtistId.length) {
-    return (
-      <div>
-        <h1>Select 3 Artists to match</h1>
-        <input type="text" value={artistName} name="artist" onChange={handleOnChange} />
-        <DisplayArtists artists={searchResults} handleSelect={handleSelect} />
-      </div>
-    );
   }
 
   return (
     <div>
-      <h1>Search for an artist</h1>
+      {primaryArtist.id && <Selections primaryArtist={primaryArtist} />}
+      {!primaryArtist.id ? <h1>choose primary artist</h1> : <h1>choose another artist</h1>}
         <input type="text" value={artistName} name="artist" onChange={handleOnChange} />
         <DisplayArtists artists={searchResults} handleSelect={handleSelect} />
     </div>
