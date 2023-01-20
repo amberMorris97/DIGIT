@@ -1,6 +1,0 @@
-module.exports = {
-  CLIENT_ID: process.env.REACT_APP_CLIENT_ID,
-  CLIENT_SECRET: process.env.REACT_APP_CLIENT_SECRET,
-  SPOTIFY_TOKEN: process.env.REACT_APP_SPOTIFY_TOKEN,
-  SPOTIFY_SEARCH: process.env.REACT_APP_SPOTIFY_SEARCH
-};

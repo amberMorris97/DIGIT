@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import ArtistForm from './ArtistForm.jsx';
-import axios from 'axios';
-import apiHandler from './helpers/api';
+import { useDispatch } from 'react-redux';
+
+import { fetchToken } from '../redux/actions/spotifyApiActions';
+import Home from './Home.jsx';
 
 const App = () => {
-  const [accessToken, setAccessToken] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(async() => {
-    const token = await apiHandler.fetchToken();
-
-    setAccessToken(token);
+    dispatch(fetchToken());
   }, []);
 
-  return (<ArtistForm token={accessToken} />)
+  return (<Home />)
 }
 
 export default App;

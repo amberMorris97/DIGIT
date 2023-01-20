@@ -6,4 +6,6 @@ import store from './redux/store';
 
 
 ReactDOM.render(
-  <App />, document.getElementById('app'));
+  <Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('app'));
