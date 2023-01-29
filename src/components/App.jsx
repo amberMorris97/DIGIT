@@ -1,6 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import ReCAPTCHA from 'react-google-recaptcha';
 import Reaptcha from 'reaptcha';
 
 import Home from './Home.jsx';
