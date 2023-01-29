@@ -1,17 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import ReCAPTCHA from 'react-google-recaptcha';
+import Reaptcha from 'reaptcha';
 
-import { fetchToken } from '../redux/actions/spotifyApiActions';
 import Home from './Home.jsx';
 
 const App = () => {
-  const dispatch = useDispatch();
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const captchaRef = useRef(null);
 
-  useEffect(async() => {
-    dispatch(fetchToken());
-  }, []);
+  const verify = () => {
+    captchaRef.current.getResponse()
+        .then(res => {
+          setCaptchaToken(res);
+        });
+  }
 
-  return (<Home />)
+  if (captchaToken) {
+    return ( <Home /> );
+  }
+
+  return (
+    <Reaptcha
+      sitekey={process.env.REACT_APP_SITE_KEY}
+      ref={captchaRef}
+      onVerify={verify}
+    />
+  );
 }
 
 export default App;

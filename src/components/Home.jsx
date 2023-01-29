@@ -4,13 +4,15 @@ import {
   setPrimaryArtist,
   setArtistOne,
   setArtistTwo,
-  setArtistThree } from '../redux/actions/spotifyApiActions';
+  setArtistThree,
+  fetchToken } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
 import Selections from './Selections.jsx';
 import axios from 'axios';
 
 const Home = () => {
   const dispatch = useDispatch();
+
   const [artistName, setArtistName] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -19,6 +21,10 @@ const Home = () => {
   const artistOne = useSelector(state => state.spotifyApiReducer.artistOne);
   const artistTwo = useSelector(state => state.spotifyApiReducer.artistTwo);
   const artistThree = useSelector(state => state.spotifyApiReducer.artistThree);
+
+  useEffect(async() => {
+    dispatch(fetchToken());
+  }, []);
 
   const clearSearchResults = () => {
     setArtistName('');
