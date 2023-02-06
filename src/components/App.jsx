@@ -13,11 +13,11 @@ const App = () => {
         .then(res => {
           setCaptchaToken(res);
         });
-  }
+  };
 
-  // if (captchaToken) {
+  if (captchaToken) {
     return ( <Home /> );
-  // }
+  }
 
   return (
     <div>

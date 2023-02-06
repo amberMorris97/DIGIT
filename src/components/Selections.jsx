@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeArtist, removePrimaryArtist } from '../redux/actions/spotifyApiActions';
 
+/** refactor to use Material UI modal or similar */
+
 const Selections = ({ primaryArtist }) => {
   const dispatch = useDispatch();
 
@@ -18,12 +20,14 @@ const Selections = ({ primaryArtist }) => {
     if (id === 'deleteArtist') {
       dispatch(removeArtist());
     }
-  }
+  };
 
   return (
     <div>
       <h1>Selected Artists: </h1>
-      <div id="primaryArtist">
+      <div>
+        {/** add alt="" to img elements */}
+        {/** add target to img elements */}
         <img src={primaryArtist.img.url} />
         {artists.length && artists.map((artist) => (
           <img src={artist.img.url} />

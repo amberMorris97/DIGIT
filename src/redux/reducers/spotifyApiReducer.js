@@ -49,6 +49,6 @@ const spotifyApiReducer = (state = initialState, action) => {
         ...state,
       }
   }
-}
+};
 
 export default spotifyApiReducer;

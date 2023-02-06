@@ -18,11 +18,12 @@ export const setPrimaryArtist = (data) => async (dispatch, getState) => {
 
 export const removePrimaryArtist = () => async (dispatch, getState) => {
   return dispatch({ type: REMOVE_PRIMARY_ARTIST })
-}
+};
 
 export const addArtist = (data) => async (dispatch, getState) => {
   return dispatch({ type: ADD_ARTIST, payload: data})
-}
+};
+
 export const removeArtist = () => (dispatch, getState) => {
   return dispatch({ type: REMOVE_ARTIST })
 
