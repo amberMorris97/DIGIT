@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Reaptcha from 'reaptcha';
+import CaptchaView from './CaptchaView.jsx';
 
 import Home from './Home.jsx';
 
@@ -14,16 +15,19 @@ const App = () => {
         });
   }
 
-  if (captchaToken) {
+  // if (captchaToken) {
     return ( <Home /> );
-  }
+  // }
 
   return (
-    <Reaptcha
-      sitekey={process.env.REACT_APP_SITE_KEY}
-      ref={captchaRef}
-      onVerify={verify}
-    />
+    <div>
+      <CaptchaView />
+      <Reaptcha
+        sitekey={process.env.REACT_APP_SITE_KEY}
+        ref={captchaRef}
+        onVerify={verify}
+      />
+    </div>
   );
 }
 

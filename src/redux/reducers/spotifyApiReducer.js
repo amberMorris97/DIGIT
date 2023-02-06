@@ -2,19 +2,14 @@ import {
   FETCH_TOKEN,
   PRIMARY_ARTIST,
   REMOVE_PRIMARY_ARTIST,
-  ARTIST_ONE,
-  REMOVE_ARTIST_ONE,
-  ARTIST_TWO,
-  REMOVE_ARTIST_TWO,
-  ARTIST_THREE,
-  REMOVE_ARTIST_THREE,
+  ADD_ARTIST,
+  REMOVE_ARTIST
  } from '../types';
+
 const initialState = {
   token: '',
   primaryArtist: [],
-  artistOne: [],
-  artistTwo: [],
-  artistThree: [],
+  artists: [],
 };
 
 const spotifyApiReducer = (state = initialState, action) => {
@@ -37,40 +32,16 @@ const spotifyApiReducer = (state = initialState, action) => {
         primaryArtist: [],
       }
     }
-    case ARTIST_ONE: {
+    case ADD_ARTIST: {
       return {
         ...state,
-        artistOne: action.payload,
+        artists: [...state.artists, action.payload],
       }
     }
-    case REMOVE_ARTIST_ONE: {
+    case REMOVE_ARTIST: {
       return {
         ...state,
-        artistOne: [],
-      }
-    }
-    case ARTIST_TWO: {
-      return {
-        ...state,
-        artistTwo: action.payload,
-      }
-    }
-    case REMOVE_ARTIST_TWO: {
-      return {
-        ...state,
-        artistTwo: [],
-      }
-    }
-    case ARTIST_THREE: {
-      return {
-        ...state,
-        artistThree: action.payload,
-      }
-    }
-    case REMOVE_ARTIST_THREE: {
-      return {
-        ...state,
-        artistThree: [],
+        artists: state.artists.splice(0, state.artists.length - 1),
       }
     }
     default:

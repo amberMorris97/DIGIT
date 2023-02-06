@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   setPrimaryArtist,
-  setArtistOne,
-  setArtistTwo,
-  setArtistThree,
+  addArtist,
   fetchToken } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
 import Selections from './Selections.jsx';
@@ -18,9 +16,7 @@ const Home = () => {
 
   const token = useSelector(state => state.spotifyApiReducer.token);
   const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
-  const artistOne = useSelector(state => state.spotifyApiReducer.artistOne);
-  const artistTwo = useSelector(state => state.spotifyApiReducer.artistTwo);
-  const artistThree = useSelector(state => state.spotifyApiReducer.artistThree);
+  const artists = useSelector(state => state.spotifyApiReducer.artists);
 
   useEffect(async() => {
     dispatch(fetchToken());
@@ -38,7 +34,7 @@ const Home = () => {
       setArtistName(value);
     };
 
-    if (value.length < 3) {
+    if (value.length < 1) {
       setSearchResults([]);
     };
 
@@ -70,20 +66,7 @@ const Home = () => {
         return;
       }
 
-      if (!artistOne.id) {
-        dispatch(setArtistOne(data));
-        return;
-      }
-
-      if (!artistTwo.id) {
-        dispatch(setArtistTwo(data));
-        return;
-      }
-
-      if (!artistThree.id) {
-        dispatch(setArtistThree(data));
-        return;
-      }
+      dispatch(addArtist(data));
     }
 
   }
@@ -93,7 +76,7 @@ const Home = () => {
       {primaryArtist.id && <Selections primaryArtist={primaryArtist} />}
       {!primaryArtist.id ? <h1>choose primary artist</h1> : <h1>choose another artist</h1>}
         <input type="text" value={artistName} name="artist" onChange={handleOnChange} />
-        <DisplayArtists artists={searchResults} handleSelect={handleSelect} />
+        {searchResults && <DisplayArtists artists={searchResults} handleSelect={handleSelect} />}
     </div>
   );
 }

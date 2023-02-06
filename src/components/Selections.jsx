@@ -1,18 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeArtist, removePrimaryArtist } from '../redux/actions/spotifyApiActions';
 
 const Selections = ({ primaryArtist }) => {
-  const artistOne = useSelector(state => state.spotifyApiReducer.artistOne);
-  const artistTwo = useSelector(state => state.spotifyApiReducer.artistTwo);
-  const artistThree = useSelector(state => state.spotifyApiReducer.artistThree);
+  const dispatch = useDispatch();
+
+  const artists = useSelector(state => state.spotifyApiReducer.artists);
+
+  const handlePrevious = (e) => {
+    const { id } = e.target;
+
+    if (artists.length === 0) {
+      dispatch(removePrimaryArtist());
+      return;
+    }
+
+    if (id === 'deleteArtist') {
+      dispatch(removeArtist());
+    }
+  }
 
   return (
     <div>
       <h1>Selected Artists: </h1>
+      <div id="primaryArtist">
         <img src={primaryArtist.img.url} />
-        {artistOne.img && <img src={artistOne.img.url} />}
-        {artistTwo.img && <img src={artistTwo.img.url} />}
-        {artistThree.img && <img src={artistThree.img.url} />}
+        {artists.length && artists.map((artist) => (
+          <img src={artist.img.url} />
+        ))}
+      </div>
+      <button id="deleteArtist" onClick={(e) => handlePrevious(e)} />
     </div>
   );
 };

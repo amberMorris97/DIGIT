@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+/* temporary local host URL for python server */
 const DEV_URL = 'http://127.0.0.1:5000';
 
 app.get('/fetchToken', async (req, res) => {
@@ -19,7 +20,7 @@ app.get('/fetchToken', async (req, res) => {
       }
     };
 
-    const body = 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+    const body = 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET;
 
     const response = await axios.post(SPOTIFY_TOKEN, body, authParams);
 
