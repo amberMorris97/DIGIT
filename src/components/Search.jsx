@@ -4,10 +4,11 @@ import {
   setPrimaryArtist,
   addArtist,
   fetchToken,
-  removePrimaryArtist } from '../redux/actions/spotifyApiActions';
+  removePrimaryArtist,
+  removeArtist } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
 import Selections from './Selections.jsx';
-import { verifyPrimaryArtist } from './helpers/verify';
+import { verifyPrimaryArtist, isDuplicate } from './helpers/verify';
 import axios from 'axios';
 
 const Search = () => {
@@ -15,6 +16,8 @@ const Search = () => {
 
   const [artistName, setArtistName] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+  const checkDupe = useRef(false);
   const primaryArtistValid = useRef(true);
 
   const token = useSelector(state => state.spotifyApiReducer.token);
@@ -57,22 +60,33 @@ const Search = () => {
     e.preventDefault();
 
     primaryArtistValid.current = true;
+    checkDupe.current = false;
 
     const { id } = e.target;
     const data = { id, img, url };
+
+    const verify = verifyPrimaryArtist(popularity);
+    const isDupe = isDuplicate(primaryArtist, artists, id);
 
     if (data) {
       clearSearchResults();
 
       if (!primaryArtist.id) {
 
-        if (verifyPrimaryArtist(popularity)) {
+        if (verify) {
           dispatch(setPrimaryArtist(data));
           return;
         }
 
         primaryArtistValid.current = false;
         dispatch(removePrimaryArtist());
+        return;
+      }
+
+      console.log(isDupe)
+
+      if (isDupe) {
+        checkDupe.current = true;
         return;
       }
 
@@ -86,6 +100,7 @@ const Search = () => {
       {artists.length < 3 ? <input type="text" value={artistName} name="artist" onChange={handleOnChange} /> : <button />}
 
       {!primaryArtistValid.current && <span>Artist popularity is too high</span>}
+      {checkDupe.current && <span>Artist has already been selected</span>}
 
       { /* Re factor to use material UI form field */ }
 

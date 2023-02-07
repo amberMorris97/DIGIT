@@ -6,12 +6,10 @@ export const verifyPrimaryArtist = (artistPopularity) => {
   return true;
 };
 
-export const verifyNoDuplicates = (primaryArtist, artists, currentArtistId) => {
+export const isDuplicate = (primaryArtist, artists, currentArtistId) => {
   if (primaryArtist.id === currentArtistId) {
-    return false;
+    return true;
   }
 
-  if (!artists.filter(artist => artists.id !== currentArtistId)) {
-    return false;
-  }
+  return !artists.every(artist => artist.id !== currentArtistId)
 };

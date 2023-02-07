@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const DisplayArtists = ({ artists, handleSelect }) => {
+
   return (
     <div>
       {artists.map((artist, idx) => (

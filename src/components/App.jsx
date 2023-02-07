@@ -15,9 +15,9 @@ const App = () => {
         });
   };
 
-  if (captchaToken) {
+  // if (captchaToken) {
     return ( <Home /> );
-  }
+  // }
 
   return (
     <div>
