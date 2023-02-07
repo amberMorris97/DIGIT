@@ -56,14 +56,14 @@ const Search = () => {
     };
   }
 
-  const handleSelect = (e, img, url, popularity) => {
+  const handleSelect = (e, img, url, popularity, uri, name) => {
     e.preventDefault();
 
     primaryArtistValid.current = true;
     checkDupe.current = false;
 
     const { id } = e.target;
-    const data = { id, img, url };
+    const data = { id, img, url, uri, name };
 
     const verify = verifyPrimaryArtist(popularity);
     const isDupe = isDuplicate(primaryArtist, artists, id);
@@ -83,8 +83,6 @@ const Search = () => {
         return;
       }
 
-      console.log(isDupe)
-
       if (isDupe) {
         checkDupe.current = true;
         return;
@@ -97,7 +95,7 @@ const Search = () => {
 
   return (
     <div>
-      {artists.length < 3 ? <input type="text" value={artistName} name="artist" onChange={handleOnChange} /> : <button />}
+      {artists.length < 3 && <input type="text" value={artistName} name="artist" onChange={handleOnChange} />}
 
       {!primaryArtistValid.current && <span>Artist popularity is too high</span>}
       {checkDupe.current && <span>Artist has already been selected</span>}

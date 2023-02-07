@@ -7,7 +7,7 @@ const DisplayArtists = ({ artists, handleSelect }) => {
       {artists.map((artist, idx) => (
         <form>
           <img id={artist.id } src={artist.images[0]?.url} />
-          <input type="submit" id={artist.id} value={`Select ${artist.name}`} onClick={(e) => handleSelect(e, artist.images[2], artist.href, artist.popularity)}/>
+          <input type="submit" id={artist.id} value={`Select ${artist.name}`} onClick={(e) => handleSelect(e, artist.images[2], artist.href, artist.popularity, artist.uri, artist.name)}/>
         </form>
       ))}
   </div>);
