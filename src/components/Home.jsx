@@ -6,6 +6,7 @@ import {
   setPrimaryArtist,
   addArtist,
   fetchToken,
+  removeArtist,
   updateUserStep } from '../redux/actions/spotifyApiActions';
 import Reaptcha from 'reaptcha';
 import Search from './Search.jsx';
@@ -19,8 +20,10 @@ const Home = () => {
   const { img, name, id } = useSelector(state => state.spotifyApiReducer.primaryArtist);
 
   const [captchaToken, setCaptchaToken] = useState(null);
-  const [view, setView] = useState('home');
+  const [view, setView] = useState(0);
   const [count, setCount] = useState(3);
+
+  const views = ['home', 'start', 'matching', 'submission'];
 
   const captchaRef = useRef(null);
 
@@ -35,9 +38,9 @@ const Home = () => {
         });
   };
 
-  const handleStart = () => setView('start');
+  const handleStart = () => setView(view + 1);
 
-  const handleMatching = () => setView('matching');
+  const handleMatching = () => setView(view + 1);
 
   const handleSubmit = () => {
     setView('submission');
@@ -46,6 +49,17 @@ const Home = () => {
     // check for success/fail redux state
 
     // error handling for failed submissions
+  }
+
+  const handlePrevious = () => {
+    if (views[view] === 'matching') {
+      if (count === 3) {
+        setView(1);
+      } else {
+        dispatch(removeArtist());
+        setCount(count + 1);
+      }
+    }
   }
 
   /**-----------------COMPONENTS------------------*/
@@ -89,6 +103,8 @@ const Home = () => {
         <ArtistSelections />
         <Button variant="text" onClick={handleSubmit}>Submit</Button>
       </>}
+
+      <Button variant="text" onClick={handlePrevious}>Previous</Button>
     </div>
   );
 
@@ -98,13 +114,13 @@ const Home = () => {
 
   /**-------------------END------------------------*/
 
-  if (view === 'home') return homeView;
+  if (views[view] === 'home') return homeView;
 
-  if (view === 'start') return startView;
+  if (views[view] === 'start') return startView;
 
-  if (view === 'matching') return matchView;
+  if (views[view] === 'matching') return matchView;
 
-  if (view === 'submission') return submissionView;
+  if (views[view] === 'submission') return submissionView;
 
 };
 

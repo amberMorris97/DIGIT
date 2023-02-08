@@ -102,7 +102,7 @@ const Search = ({ view, count, setCount }) => {
     <div>
       {artists.length < 4 && <input type="text" value={artistName} name="artist" onChange={handleOnChange} />}
 
-      {!primaryArtistValid.current && artists.length <= 1 && <span>Artist popularity is too high</span>}
+      {!primaryArtistValid.current && artists.length <= 0 && <span>Artist popularity is too high</span>}
       {checkDupe.current && <span>Artist has already been selected</span>}
 
       { /* Re factor to use material UI form field */ }
