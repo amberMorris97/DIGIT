@@ -73,9 +73,9 @@ const Search = ({ view, count, setCount }) => {
     const verifyAndSet = () => {
       if (verify && !primaryArtist.id) {
         dispatch(setPrimaryArtist(data));
-      } else if (verify && primaryArtist.id && userStep === 'start') {
+      } else if (verify && primaryArtist.id) {
         dispatch(updatePrimaryArtist(data));
-        dispatch(removeArtist());
+        // dispatch(removeArtist());
       } else if (!verify) {
         primaryArtistValid.current = false;
       }
