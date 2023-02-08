@@ -4,7 +4,9 @@ import {
   PRIMARY_ARTIST,
   REMOVE_PRIMARY_ARTIST,
   REMOVE_ARTIST,
-  ADD_ARTIST
+  ADD_ARTIST,
+  UPDATE_PRIMARY_ARTIST,
+  UPDATE_USER_STEP,
  } from '../types';
 
  export const fetchToken = () => async (dispatch, getState) => {
@@ -17,15 +19,22 @@ export const setPrimaryArtist = (data) => async (dispatch, getState) => {
 };
 
 export const removePrimaryArtist = () => async (dispatch, getState) => {
-  return dispatch({ type: REMOVE_PRIMARY_ARTIST })
+  return dispatch({ type: REMOVE_PRIMARY_ARTIST });
 };
 
 export const addArtist = (data) => async (dispatch, getState) => {
-  return dispatch({ type: ADD_ARTIST, payload: data})
+  return dispatch({ type: ADD_ARTIST, payload: data});
 };
 
 export const removeArtist = () => (dispatch, getState) => {
-  return dispatch({ type: REMOVE_ARTIST })
-
+  return dispatch({ type: REMOVE_ARTIST });
 };
+
+export const updatePrimaryArtist = (data) => async (dispatch, getState) => {
+  return dispatch({ type: UPDATE_PRIMARY_ARTIST, payload: data });
+};
+
+export const updateUserStep = (step) => async (dispatch, getState) => {
+  return dispatch({ type: UPDATE_USER_STEP, payload: step })
+}
 

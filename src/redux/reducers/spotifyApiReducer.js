@@ -1,7 +1,9 @@
 import {
   FETCH_TOKEN,
   PRIMARY_ARTIST,
+  UPDATE_PRIMARY_ARTIST,
   REMOVE_PRIMARY_ARTIST,
+  UPDATE_USER_STEP,
   ADD_ARTIST,
   REMOVE_ARTIST
  } from '../types';
@@ -10,6 +12,7 @@ const initialState = {
   token: '',
   primaryArtist: [],
   artists: [],
+  userStep: 'home',
 };
 
 const spotifyApiReducer = (state = initialState, action) => {
@@ -42,6 +45,18 @@ const spotifyApiReducer = (state = initialState, action) => {
       return {
         ...state,
         artists: state.artists.splice(0, state.artists.length - 1),
+      }
+    }
+    case UPDATE_PRIMARY_ARTIST: {
+      return {
+        ...state,
+        primaryArtist: action.payload,
+      }
+    }
+    case UPDATE_USER_STEP: {
+      return {
+        ...state,
+        userStep: action.payload,
       }
     }
     default:

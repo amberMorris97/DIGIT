@@ -1,32 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Reaptcha from 'reaptcha';
-import CaptchaView from './CaptchaView.jsx';
-
+import Header from './Header.jsx';
 import Home from './Home.jsx';
+import Submissions from './Submissions.jsx';
+import { SearchSection } from './ChoosePrimaryArtist.jsx';
+import { FeaturedArtistSection } from './ChooseMatchingArtists.jsx';
+import { fetchToken, updateUserStep } from '../redux/actions/spotifyApiActions';
 
 const App = () => {
-  const [captchaToken, setCaptchaToken] = useState(null);
-  const captchaRef = useRef(null);
-
-  const verify = () => {
-    captchaRef.current.getResponse()
-        .then(res => {
-          setCaptchaToken(res);
-        });
-  };
-
-  // if (captchaToken) {
-    return ( <Home /> );
-  // }
 
   return (
-    <div>
-      <CaptchaView />
-      <Reaptcha
-        sitekey={process.env.REACT_APP_SITE_KEY}
-        ref={captchaRef}
-        onVerify={verify}
-      />
+    <div className="app">
+      <Header />
+      <Home />
     </div>
   );
 }

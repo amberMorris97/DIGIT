@@ -5,6 +5,7 @@ import {
   addArtist,
   fetchToken,
   removePrimaryArtist,
+  updatePrimaryArtist,
   removeArtist } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
 import Selections from './Selections.jsx';
@@ -23,6 +24,7 @@ const Search = () => {
   const token = useSelector(state => state.spotifyApiReducer.token);
   const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
   const artists = useSelector(state => state.spotifyApiReducer.artists);
+  const userStep = useSelector(state => state.spotifyApiReducer.userStep);
 
   const clearSearchResults = () => {
     setArtistName('');
@@ -68,36 +70,39 @@ const Search = () => {
     const verify = verifyPrimaryArtist(popularity);
     const isDupe = isDuplicate(primaryArtist, artists, id);
 
+    const verifyAndSet = () => {
+      if (verify && !primaryArtist.id) {
+        dispatch(setPrimaryArtist(data));
+      } else if (verify && primaryArtist.id && userStep === 'start') {
+        dispatch(updatePrimaryArtist(data));
+        dispatch(removeArtist());
+      } else if (!verify) {
+        primaryArtistValid.current = false;
+      }
+    }
+
     if (data) {
       clearSearchResults();
 
-      if (!primaryArtist.id) {
-
-        if (verify) {
-          dispatch(setPrimaryArtist(data));
-          return;
-        }
-
-        primaryArtistValid.current = false;
-        dispatch(removePrimaryArtist());
-        return;
-      }
+      verifyAndSet();
 
       if (isDupe) {
         checkDupe.current = true;
         return;
       }
 
-      dispatch(addArtist(data));
+      if (userStep === 'matching') {
+        dispatch(addArtist(data));
+      }
     }
-  };
+  }
 
 
   return (
     <div>
-      {artists.length < 3 && <input type="text" value={artistName} name="artist" onChange={handleOnChange} />}
+      {artists.length < 4 && <input type="text" value={artistName} name="artist" onChange={handleOnChange} />}
 
-      {!primaryArtistValid.current && <span>Artist popularity is too high</span>}
+      {!primaryArtistValid.current && artists.length <= 1 && <span>Artist popularity is too high</span>}
       {checkDupe.current && <span>Artist has already been selected</span>}
 
       { /* Re factor to use material UI form field */ }
