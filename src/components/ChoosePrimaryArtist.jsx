@@ -4,26 +4,26 @@ import { Button } from '@mui/material';
 import Search from './Search.jsx';
 import { updateUserStep } from '../redux/actions/spotifyApiActions';
 
-export const SearchSection = ({ primaryArtist }) => {
-  const dispatch = useDispatch();
+// export const SearchSection = ({ primaryArtist }) => {
+//   const dispatch = useDispatch();
 
+//   const { id, img, name } = primaryArtist;
 
-  const { id, img, name } = primaryArtist;
+//   const handleClick = () => {
+//     dispatch(updateUserStep('matching'));
+//   }
 
-  const handleClick = () => {
-    dispatch(updateUserStep('matching'))
-  }
+//   return (
+//     <div className="search-section">
+//       <h4>Search for the artist you want to feature</h4>
+//       <Search />
+//       {id && <YouChoseSection { img, name } />}
+//       <Button variant="text" onClick={handleClick}>Next</Button>
+//     </div>
+//   );
+// };
 
-  return (
-    <div className="search-section">
-      <h4>Search for the artist you want to feature</h4>
-      <Search />
-      {id && <YouChoseSection img={img} name={name} handleClick={handleClick} />}
-    </div>
-  );
-};
-
-export const YouChoseSection = ({ img, name, handleClick }) => {
+export const YouChoseSection = ({ img, name }) => {
 
   return (
     <div className="primary-artist-choice-container">
@@ -31,7 +31,6 @@ export const YouChoseSection = ({ img, name, handleClick }) => {
       <br />
       <h4>{name}</h4>
       <img src={img.url} />
-      <Button variant="text" onClick={handleClick}>Next</Button>
     </div>
   );
 };

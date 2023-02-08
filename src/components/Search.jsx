@@ -12,7 +12,7 @@ import Selections from './Selections.jsx';
 import { verifyPrimaryArtist, isDuplicate } from './helpers/verify';
 import axios from 'axios';
 
-const Search = () => {
+const Search = ({ view, count, setCount }) => {
   const dispatch = useDispatch();
 
   const [artistName, setArtistName] = useState('');
@@ -91,12 +91,13 @@ const Search = () => {
         return;
       }
 
-      if (userStep === 'matching') {
+      if (view === 'matching') {
         dispatch(addArtist(data));
+
+        setCount();
       }
     }
   }
-
 
   return (
     <div>
