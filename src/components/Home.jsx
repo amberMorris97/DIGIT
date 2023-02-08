@@ -1,87 +1,3 @@
-// import React, { useState, useEffect, useRef } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import axios from 'axios';
-// import { Button } from '@mui/material';
-// import {
-//   setPrimaryArtist,
-//   addArtist,
-//   fetchToken } from '../redux/actions/spotifyApiActions';
-// import Reaptcha from 'reaptcha';
-// import Search from './Search.jsx';
-// import DisplayArtists from './DisplayArtists.jsx';
-// import Selections from './Selections.jsx';
-// import { SearchSection } from './ChoosePrimaryArtist.jsx';
-import { ArtistSelections } from './ChooseMatchingArtists.jsx';
-
-
-// const Home = () => {
-//   const dispatch = useDispatch();
-
-//   const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
-
-//   const [artistName, setArtistName] = useState('');
-//   const [searchResults, setSearchResults] = useState([]);
-//   const [captchaToken, setCaptchaToken] = useState(null);
-//   const [step, setStep] = useState('home');
-
-//   const captchaRef = useRef(null);
-
-//   useEffect(async() => {
-//     dispatch(fetchToken());
-//   }, []);
-
-//   const verify = () => {
-//     captchaRef.current.getResponse()
-//         .then(res => {
-//           setCaptchaToken(res);
-//         });
-//   };
-
-//   const handleClick = () => {
-//     if (step === 'home') {
-//       setStep('start');
-//     };
-
-//     if (step === 'start') {
-//       setStep('matching');
-//     }
-//   }
-
-//   if (primaryArtist.id && )
-
-//   if (step === 'start') {
-//     return (
-//       <SearchSection primaryArtist={primaryArtist} handleClick={handleClick} />
-//     );
-//   }
-
-//   if (!primaryArtist.id) {
-//     return (
-//       <div className="home-page">
-//         <p className="paragraph-1">dummy text</p>
-//         <p className="paragraph-2">dummy text</p>
-//         <Button onClick={handleClick}>Next</Button>
-//         {/* <Button disabled={!captchaToken} onClick={handleClick}>Next</Button> */}
-//         {/* <div className="captcha-container">
-//           <Reaptcha
-//             sitekey={process.env.REACT_APP_SITE_KEY}
-//             ref={captchaRef}
-//             onVerify={verify}
-//           />
-//         </div> */}
-//       </div>
-//     );
-//   }
-
-//   if (step === 'matching' && primaryArtist.id) {
-//     return (
-//       <FeaturedArtistSection />
-//     );
-//   }
-// };
-
-// export default Home;
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -93,22 +9,15 @@ import {
   updateUserStep } from '../redux/actions/spotifyApiActions';
 import Reaptcha from 'reaptcha';
 import Search from './Search.jsx';
-import DisplayArtists from './DisplayArtists.jsx';
-import Selections from './Selections.jsx';
 import { YouChoseSection } from './ChoosePrimaryArtist.jsx';
-import { FeaturedArtistSection } from './ChooseMatchingArtists.jsx';
-
+import { ArtistSelections } from './ChooseMatchingArtists.jsx';
+import Submissions from './Submissions.jsx';
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
-  const userStep = useSelector(state => state.spotifyApiReducer.userStep);
+  const { img, name, id } = useSelector(state => state.spotifyApiReducer.primaryArtist);
 
-  const { img, name, id } = primaryArtist;
-
-  const [artistName, setArtistName] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
   const [captchaToken, setCaptchaToken] = useState(null);
   const [view, setView] = useState('home');
   const [count, setCount] = useState(3);
@@ -117,7 +26,7 @@ const Home = () => {
 
   useEffect(async() => {
     dispatch(fetchToken());
-  }, [userStep]);
+  }, []);
 
   const verify = () => {
     captchaRef.current.getResponse()
@@ -130,10 +39,16 @@ const Home = () => {
 
   const handleMatching = () => setView('matching');
 
-  const handleSubmit = () => setView('submission');
+  const handleSubmit = () => {
+    setView('submission');
 
+    // dispatch submission sent
+    // check for success/fail redux state
 
+    // error handling for failed submissions
+  }
 
+  /**-----------------COMPONENTS------------------*/
   const homeView = (
     <div className="home-page">
       <p className="paragraph-1">dummy text</p>
@@ -155,7 +70,7 @@ const Home = () => {
       <h4>Search for the artist you want to feature</h4>
       <Search />
       {id && <YouChoseSection img={img} name={name} />}
-      <Button variant="text" disabled={!primaryArtist.id} onClick={handleMatching}>Next</Button>
+      <Button variant="text" disabled={!id} onClick={handleMatching}>Next</Button>
     </div>
   );
 
@@ -172,38 +87,16 @@ const Home = () => {
       <>
         <h4>Ready to submit?</h4>
         <ArtistSelections />
-        <Button variant="text">Submit</Button>
+        <Button variant="text" onClick={handleSubmit}>Submit</Button>
       </>}
     </div>
   );
 
-  // if (userStep === 'home') {
-  //   return (
-  //     <div className="home-page">
-  //       <p className="paragraph-1">dummy text</p>
-  //       <p className="paragraph-2">dummy text</p>
-  //       <Button onClick={handleClick}>Next</Button>
-  //       {/* <Button disabled={!captchaToken} onClick={handleClick}>Next</Button> */}
-  //       {/* <div className="captcha-container">
-  //         <Reaptcha
-  //           sitekey={process.env.REACT_APP_SITE_KEY}
-  //           ref={captchaRef}
-  //           onVerify={verify}
-  //         />
-  //       </div> */}
-  //     </div>
-  //   );
-  // }
+  const submissionView = (
+    <Submissions />
+  );
 
-  // if (userStep === 'start') {
-  //   return (
-  //     <SearchSection primaryArtist={primaryArtist} />
-  //   );
-  // }
-
-  // if (userStep === 'matching') {
-  //   return <FeaturedArtistSection />
-  // }
+  /**-------------------END------------------------*/
 
   if (view === 'home') return homeView;
 
@@ -211,7 +104,7 @@ const Home = () => {
 
   if (view === 'matching') return matchView;
 
-  if (view === 'submission') return homeView;
+  if (view === 'submission') return submissionView;
 
 };
 
