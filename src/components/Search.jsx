@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   setPrimaryArtist,
   addArtist,
-  fetchToken,
-  removePrimaryArtist,
   updatePrimaryArtist,
   removeArtist } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
@@ -73,9 +71,10 @@ const Search = ({ view, count, setCount }) => {
     const verifyAndSet = () => {
       if (verify && !primaryArtist.id) {
         dispatch(setPrimaryArtist(data));
-      } else if (verify && primaryArtist.id) {
+
+      } else if (verify && primaryArtist.id && view !== 'matching') {
         dispatch(updatePrimaryArtist(data));
-        // dispatch(removeArtist());
+
       } else if (!verify) {
         primaryArtistValid.current = false;
       }
