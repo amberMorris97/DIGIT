@@ -55,6 +55,7 @@ const Home = () => {
     if (views[view] === 'matching') {
       if (count === 3) {
         setView(1);
+        dispatch();
       } else {
         dispatch(removeArtist());
         setCount(count + 1);

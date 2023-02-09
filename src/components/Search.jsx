@@ -59,24 +59,27 @@ const Search = ({ view, count, setCount }) => {
   const handleSelect = (e, img, url, popularity, uri, name) => {
     e.preventDefault();
 
-    primaryArtistValid.current = true;
-    checkDupe.current = false;
-
     const { id } = e.target;
     const data = { id, img, url, uri, name };
 
+    /** checks for valid selections */
     const verify = verifyPrimaryArtist(popularity);
     const isDupe = isDuplicate(primaryArtist, artists, id);
+
+    primaryArtistValid.current = true;
+    checkDupe.current = false;
 
     const verifyAndSet = () => {
       if (verify && !primaryArtist.id) {
         dispatch(setPrimaryArtist(data));
 
-      } else if (verify && primaryArtist.id && view !== 'matching') {
-        dispatch(updatePrimaryArtist(data));
+      } else if (view !== 'matching') {
+        if (verify && primaryArtist.id) {
+          dispatch(updatePrimaryArtist(data));
 
-      } else if (!verify) {
-        primaryArtistValid.current = false;
+        } else if (!verify) {
+          primaryArtistValid.current = false;
+        }
       }
     }
 
