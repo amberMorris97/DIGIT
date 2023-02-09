@@ -4,23 +4,14 @@ import { Card, CardMedia, CaButton, Typography } from '@mui/material';
 
 import { ArtistProfileCard } from './ArtistProfileCard.jsx';
 
-export const PrimaryArtist = ({ img, name }) => {
+export const PrimaryArtist = ({ id, img, name }) => {
   const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
 
   return (
     <div className="primary-artist-choice-container">
       <h4>You chose:</h4>
-      <ArtistProfileCard artist={primaryArtist} />
+      <ArtistProfileCard id={id} img={img} name={name} />
       {/**Link to artist page on spotify? probably yea*/}
-      {/* <Card sx={{ display: 'flex' }}>
-        <CardMedia
-          component="img"
-          sx={{ width: 100 }}
-          image={img}
-          alt="Artist profile picture"
-        />
-      </Card> */}
-      {/** link to artist spotify */}
       <h4>{name}</h4>
     </div>
   );

@@ -7,7 +7,6 @@ import {
   updatePrimaryArtist,
   removeArtist } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
-import Selections from './Selections.jsx';
 import { verifyPrimaryArtist, isDuplicate } from './helpers/verify';
 import axios from 'axios';
 
@@ -103,23 +102,25 @@ const Search = ({ view, count, setCount }) => {
     }
   }
 
-  return (
-    <div>
-      {/* {artists.length < 4 && <TextField label="Search on spotify" value={artistName} name="artist" onChange={handleOnChange} />} */}
-      {artists.length < 4 &&
-        <>
-          <InputLabel htmlFor="name">Search for the artist you want to feature</InputLabel>
-           <Input
-             id="spotify-search"
-             name="artist"
-             aria-describedby="spotify-search-helper-text"
-             onChange={handleOnChange}
-             value={artistName}
-           />
-        </>}
+  const searchInput = (
+    <Input
+      id="spotify-search"
+      name="artist"
+      aria-describedby="spotify-search-helper-text"
+      onChange={handleOnChange}
+      value={artistName}
+    />);
 
-      {!primaryArtistValid.current && artists.length <= 0 && <span>Artist popularity is too high</span>}
-      {checkDupe.current && <span>Artist has already been selected</span>}
+
+
+  return (
+    <div className="search-bar-container">
+      {artists.length < 4 && view !== 'matching'
+          && artists.length < 1 && <InputLabel htmlFor="name">Search for the artist you want to feature</InputLabel>}
+
+        {searchInput}
+      {/* {!primaryArtistValid.current && artists.length <= 0 && <span>Artist popularity is too high</span>}
+      {checkDupe.current && <span>Artist has already been selected</span>} */}
 
       { /* Re factor to use material UI form field */ }
 

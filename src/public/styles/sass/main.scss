@@ -26,7 +26,9 @@ body{
 
 /* mobile styles */
 body{
-  /** re-used component class */
+
+  /**-----reusable component styles----- */
+
   .artist-profile-card{
     .MuiTypography-h5{
       font-size: medium;
@@ -50,6 +52,17 @@ body{
       }
     }
   }
+
+  .search-bar-container{
+    .MuiInputBase-root{
+      background-color: var(--secondarytext);
+      width: 75%;
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+
+  /**----------END--------- */
 
   .header-title{
     color: var(--secondarytext);
@@ -98,6 +111,31 @@ body{
       justify-content: center;
     }
   }
+
+  .matching-section{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "title title"
+      "search search"
+      "matches matches"
+      "primary primary";
+    align-items: center;
+
+      h4{
+        grid-area: title;
+      }
+
+      .search-bar-container{
+        grid-area: search;
+      }
+
+      .artist-profile-card{
+        grid-area: primary;
+      }
+
+  }
+
 }
 
 /* small tablet styles */

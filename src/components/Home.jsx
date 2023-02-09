@@ -7,6 +7,7 @@ import { fetchToken, removeArtist } from '../redux/actions/spotifyApiActions';
 import Search from './Search.jsx';
 import Submissions from './Submissions.jsx';
 import { ArtistSelections, PrimaryArtist } from './ArtistSelections.jsx';
+import { ArtistProfileCard } from './ArtistProfileCard.jsx';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const Home = () => {
   }
 
   /**-----------------COMPONENTS------------------*/
+
   const homeView = (
     <section className="home-view">
       <Paper>
@@ -79,29 +81,11 @@ const Home = () => {
       </div>
     </section>
   );
-    /* <div className="home-page">
-    //   <Paper variant="outlined" className="paragraph-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-
-    // </Paper>
-    //   <p className="paragraph-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-
-    // </p>
-      // <Button onClick={handleStart}>Next</Button>
-      {/* <Button disabled={!captchaToken} onClick={handleClick}>Next</Button> */
-      /* <div className="captcha-container">
-        <Reaptcha
-          sitekey={process.env.REACT_APP_SITE_KEY}
-          ref={captchaRef}
-          onVerify={verify}
-        />
-      </div> */
-    // </div> */
-
 
   const startView = (
     <div className="search-section">
       <Search />
-      {id && <PrimaryArtist img={img} name={name} />}
+      {id && <PrimaryArtist id={id} img={img} name={name} />}
       <Button variant="text" disabled={!id} onClick={handleMatching}>Next</Button>
     </div>
   );
@@ -112,13 +96,12 @@ const Home = () => {
       <>
         <h4>Choose {count} more artists that match this vibe</h4>
         <Search view={'matching'} setCount={() => setCount(count - 1)} />
-        <ArtistSelections />
+        <ArtistProfileCard id={id} img={img} name={name} />
       </>}
 
       {count <= 0 &&
       <>
         <h4>Ready to submit?</h4>
-        <ArtistSelections />
         <Button variant="text" onClick={handleSubmit}>Submit</Button>
       </>}
 
