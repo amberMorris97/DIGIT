@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Unstable_Grid2';
 import {
   setPrimaryArtist,
   addArtist,
@@ -65,20 +68,44 @@ const Home = () => {
 
   /**-----------------COMPONENTS------------------*/
   const homeView = (
-    <div className="home-page">
-      <p className="paragraph-1">dummy text</p>
-      <p className="paragraph-2">dummy text</p>
+    <section className="home-view">
+      <Paper>
+        In the last few years, the music industry has changed drastically due to social media greatly expanding music consumption. This has caused many smaller artists/musicians to progressively lose the ability to reach a broadened audience. Resolving this issue would benefit independent artists, as well as the over saturation within the music industry.
+      </Paper>
+
+      <Paper>
+        The final product will be a web application that allows up and coming musicians to reach a broader audience by recommending these “emerging” artists based on results from a machine learning model.
+      </Paper>
+
+      {/* <Button disabled={!captchaToken} onClick={handleStart}>Next</Button> */}
       <Button onClick={handleStart}>Next</Button>
-      {/* <Button disabled={!captchaToken} onClick={handleClick}>Next</Button> */}
-      {/* <div className="captcha-container">
+      <div className="captcha-container">
         <Reaptcha
           sitekey={process.env.REACT_APP_SITE_KEY}
           ref={captchaRef}
           onVerify={verify}
         />
-      </div> */}
-    </div>
+      </div>
+    </section>
   );
+    /* <div className="home-page">
+    //   <Paper variant="outlined" className="paragraph-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
+    // </Paper>
+    //   <p className="paragraph-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
+    // </p>
+      // <Button onClick={handleStart}>Next</Button>
+      {/* <Button disabled={!captchaToken} onClick={handleClick}>Next</Button> */
+      /* <div className="captcha-container">
+        <Reaptcha
+          sitekey={process.env.REACT_APP_SITE_KEY}
+          ref={captchaRef}
+          onVerify={verify}
+        />
+      </div> */
+    // </div> */
+
 
   const startView = (
     <div className="search-section">

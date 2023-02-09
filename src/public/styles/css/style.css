@@ -1,0 +1,45 @@
+/* variables */
+:root {
+  --primary: #010101;
+  --secondarytext: #A37CF0;
+  --primarytext: #E6DDD6;
+  --secondary: #6834D4; }
+
+/* reset */
+body, p, a, button {
+  margin: 0;
+  padding: 0;
+  text-decoration: none; }
+
+/* base styles */
+body {
+  background: var(--primary);
+  overflow-x: hidden; }
+
+/* fonts */
+body {
+  font-family: 'Helvetica';
+  color: var(--primarytext); }
+
+/* mobile styles */
+body .header-title {
+  color: var(--secondarytext);
+  text-align: center;
+  padding: 2rem 0; }
+
+body .home-view {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(autofit, minmax(240px, 1fr));
+  grid-gap: 1rem;
+  padding: 0 2rem; }
+  body .home-view .MuiPaper-root {
+    background-color: rgba(104, 53, 212, 0.5);
+    padding: 2rem;
+    font-size: small;
+    color: var(--primarytext);
+    font-weight: bold; }
+
+/* small tablet styles */
+/* large tables and laptops */
+/* desktop styles */

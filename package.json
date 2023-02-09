@@ -8,7 +8,8 @@
     "build-watch": "npx webpack --watch",
     "build": "npx webpack",
     "dev": "nodemon server/index.js",
-    "start": "node server/start.js "
+    "start": "node server/start.js ",
+    "sass": "node-sass src/public/styles/sass/main.scss src/public/styles/css/style.css -w"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "babel-plugin-import": "^1.13.3",
     "buffer": "^6.0.3",
     "dotenv": "^16.0.3",
+    "node-sass": "^8.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -29,6 +31,7 @@
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.58.0",
     "webpack": "^5.38.1"
   },
   "devDependencies": {
