@@ -4,12 +4,16 @@ import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 
+import { ArtistProfileCard } from './ArtistProfileCard.jsx';
+
 const DisplayArtists = ({ topResult, artists, handleSelect }) => {
   const { id, url, uri, name } = topResult;
+  topResult.img = topResult.images[0].url;
 
   return (
     <div className="search-result-display">
-      <Card sx={{ display: 'flex'}}>
+      <ArtistProfileCard artist={topResult} />
+      {/* <Card sx={{ display: 'flex' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
             {topResult.name}
@@ -22,11 +26,11 @@ const DisplayArtists = ({ topResult, artists, handleSelect }) => {
           component="img"
           sx={{ width: 100 }}
           image={topResult.images[0].url}
-          alt="Artist profile picture"
+          alt="Artist profile photo"
         />
-      </Card>
+      </Card> */}
       <br />
-      <Button variant="outlined" onClick={(e) => handleSelect(e, id, topResult.images[0].url, url, uri, name)}>Select {topResult.name}</Button>
+      <Button variant="outlined" onClick={(e) => handleSelect(e, id, topResult.images[0].url, url, topResult.popularity, uri, name)}>Select {topResult.name}</Button>
   </div>);
 };
 

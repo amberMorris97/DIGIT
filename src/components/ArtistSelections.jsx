@@ -1,14 +1,27 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Card, CardMedia, CaButton, Typography } from '@mui/material';
+
+import { ArtistProfileCard } from './ArtistProfileCard.jsx';
 
 export const PrimaryArtist = ({ img, name }) => {
+  const primaryArtist = useSelector(state => state.spotifyApiReducer.primaryArtist);
 
   return (
     <div className="primary-artist-choice-container">
       <h4>You chose:</h4>
-      <br />
+      <ArtistProfileCard artist={primaryArtist} />
+      {/**Link to artist page on spotify? probably yea*/}
+      {/* <Card sx={{ display: 'flex' }}>
+        <CardMedia
+          component="img"
+          sx={{ width: 100 }}
+          image={img}
+          alt="Artist profile picture"
+        />
+      </Card> */}
+      {/** link to artist spotify */}
       <h4>{name}</h4>
-      <img src={img.url} />
     </div>
   );
 };
@@ -31,3 +44,11 @@ export const ArtistSelections = () => {
     </div>
   );
 };
+
+/**
+ * Consider adding links in
+ * the following places:
+ * <PrimaryArtist /> "You chose <name>"
+ * <ArtistSelections /> on li elements
+ * <DisplayResults /> search result
+ */

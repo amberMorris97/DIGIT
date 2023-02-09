@@ -57,11 +57,12 @@ const Search = ({ view, count, setCount }) => {
     };
   }
 
-  const handleSelect = (e, img, url, popularity, uri, name) => {
+  const handleSelect = (e, id, img, url, popularity, uri, name) => {
     e.preventDefault();
 
-    const { id } = e.target;
     const data = { id, img, url, uri, name };
+
+    console.log(data);
 
     /** checks for valid selections */
     const verify = verifyPrimaryArtist(popularity);
