@@ -40,6 +40,41 @@ body .home-view {
     color: var(--primarytext);
     font-weight: bold; }
 
+body .search-section {
+  display: grid;
+  align-items: center;
+  justify-content: center; }
+  body .search-section .MuiFormLabel-root {
+    color: var(--primarytext);
+    padding: 0 1rem;
+    font-weight: bold; }
+  body .search-section .MuiInputBase-root {
+    background-color: var(--secondarytext);
+    width: 75%;
+    margin: 0.5rem;
+    padding: 0.5rem; }
+  body .search-section .MuiTypography-h5 {
+    font-size: medium;
+    text-align: left;
+    font-weight: bold; }
+  body .search-section .MuiPaper-root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    padding: 0 1rem;
+    margin: 0;
+    background-color: rgba(230, 221, 214, 0.2);
+    color: var(--primarytext); }
+    body .search-section .MuiPaper-root .MuiCardContent-root {
+      align-items: flex-start; }
+  body .search-section div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+
 /* small tablet styles */
 /* large tables and laptops */
 /* desktop styles */

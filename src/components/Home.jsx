@@ -1,21 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Grid2 from '@mui/material/Unstable_Grid2';
-import {
-  setPrimaryArtist,
-  addArtist,
-  fetchToken,
-  removeArtist,
-  updateUserStep } from '../redux/actions/spotifyApiActions';
 import Reaptcha from 'reaptcha';
+import { Button, Paper } from '@mui/material/';
+import { fetchToken, removeArtist } from '../redux/actions/spotifyApiActions';
 import Search from './Search.jsx';
-import { YouChoseSection } from './ChoosePrimaryArtist.jsx';
-import { ArtistSelections } from './ChooseMatchingArtists.jsx';
 import Submissions from './Submissions.jsx';
+import { ArtistSelections, PrimaryArtist } from './ArtistSelections.jsx';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -109,9 +100,8 @@ const Home = () => {
 
   const startView = (
     <div className="search-section">
-      <h4>Search for the artist you want to feature</h4>
       <Search />
-      {id && <YouChoseSection img={img} name={name} />}
+      {id && <PrimaryArtist img={img} name={name} />}
       <Button variant="text" disabled={!id} onClick={handleMatching}>Next</Button>
     </div>
   );

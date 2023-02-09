@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Input, InputLabel, Button } from '@mui/material'
 import {
   setPrimaryArtist,
   addArtist,
@@ -43,7 +44,7 @@ const Search = ({ view, count, setCount }) => {
     };
 
     let results;
-    if (value.length > 3) {
+    if (value.length > 1) {
       try {
         results = await axios.get(`/search/?artist=${value}&token=${token}`);
       } catch (e) {
@@ -103,14 +104,25 @@ const Search = ({ view, count, setCount }) => {
 
   return (
     <div>
-      {artists.length < 4 && <input type="text" value={artistName} name="artist" onChange={handleOnChange} />}
+      {/* {artists.length < 4 && <TextField label="Search on spotify" value={artistName} name="artist" onChange={handleOnChange} />} */}
+      {artists.length < 4 &&
+        <>
+          <InputLabel htmlFor="name">Search for the artist you want to feature</InputLabel>
+           <Input
+             id="spotify-search"
+             name="artist"
+             aria-describedby="spotify-search-helper-text"
+             onChange={handleOnChange}
+             value={artistName}
+           />
+        </>}
 
       {!primaryArtistValid.current && artists.length <= 0 && <span>Artist popularity is too high</span>}
       {checkDupe.current && <span>Artist has already been selected</span>}
 
       { /* Re factor to use material UI form field */ }
 
-      {searchResults &&  <DisplayArtists artists={searchResults} handleSelect={handleSelect} />}
+      {searchResults[0] &&  <DisplayArtists topResult={searchResults[0]} artists={searchResults} handleSelect={handleSelect} />}
     </div>
   );
 };

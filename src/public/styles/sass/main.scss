@@ -26,7 +26,6 @@ body{
 
 /* mobile styles */
 body{
-
   .header-title {
     color: var(--secondarytext);
     text-align: center;
@@ -46,6 +45,54 @@ body{
       font-size: small;
       color: var(--primarytext);
       font-weight: bold;
+    }
+  }
+
+  .search-section{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    .MuiFormLabel-root{
+      color: var(--primarytext);
+      padding: 0 1rem;
+      font-weight: bold;
+    }
+
+    .MuiInputBase-root{
+      background-color: var(--secondarytext);
+      width: 75%;
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+
+    .MuiTypography-h5{
+      font-size: medium;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .MuiPaper-root {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 80%;
+      padding: 0 1rem;
+      margin: 0;
+      background-color: rgba(230, 221, 214, 0.2);
+      color: var(--primarytext);
+
+      .MuiCardContent-root{
+        align-items: flex-start;
+      }
+    }
+
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

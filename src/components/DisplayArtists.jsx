@@ -1,15 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { Card, CardContent, Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
 
-const DisplayArtists = ({ artists, handleSelect }) => {
+const DisplayArtists = ({ topResult, artists, handleSelect }) => {
+  const { id, url, uri, name } = topResult;
 
   return (
-    <div>
-      {artists.map((artist, idx) => (
-        <form>
-          <img id={artist.id } src={artist.images[0]?.url} />
-          <input type="submit" id={artist.id} value={`Select ${artist.name}`} onClick={(e) => handleSelect(e, artist.images[2], artist.href, artist.popularity, artist.uri, artist.name)}/>
-        </form>
-      ))}
+    <div className="search-result-display">
+      <Card sx={{ display: 'flex'}}>
+        <CardContent sx={{ flex: '1 0 auto' }}>
+          <Typography component="div" variant="h5">
+            {topResult.name}
+          </Typography>
+          <Typography component="div" variant="subtitle1">
+            Featured Artist
+          </Typography>
+        </CardContent>
+        <CardMedia
+          component="img"
+          sx={{ width: 100 }}
+          image={topResult.images[0].url}
+          alt="Artist profile picture"
+        />
+      </Card>
+      <br />
+      <Button variant="outlined" onClick={(e) => handleSelect(e, id, topResult.images[0].url, url, uri, name)}>Select {topResult.name}</Button>
   </div>);
 };
 
