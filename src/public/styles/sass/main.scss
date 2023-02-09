@@ -34,7 +34,7 @@ body{
       font-weight: bold;
     }
 
-    .MuiPaper-root {
+    .MuiPaper-root{
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -51,7 +51,7 @@ body{
     }
   }
 
-  .header-title {
+  .header-title{
     color: var(--secondarytext);
     text-align: center;
     padding: 2rem 0;
@@ -91,28 +91,6 @@ body{
       padding: 0.5rem;
     }
 
-    // .MuiTypography-h5{
-    //   font-size: medium;
-    //   text-align: left;
-    //   font-weight: bold;
-    // }
-
-    // .MuiPaper-root {
-    //   display: flex;
-    //   flex-direction: row;
-    //   align-items: center;
-    //   justify-content: space-between;
-    //   width: 80%;
-    //   padding: 0 1rem;
-    //   margin: 0;
-    //   background-color: rgba(230, 221, 214, 0.2);
-    //   color: var(--primarytext);
-
-    //   .MuiCardContent-root{
-    //     align-items: flex-start;
-    //   }
-    // }
-
     div{
       display: flex;
       flex-direction: column;
@@ -120,16 +98,6 @@ body{
       justify-content: center;
     }
   }
-
-  // .primary-artist-choice-container{
-  //   .MuiPaper-root{
-  //     background: none;
-  //     padding: 0;
-  //     margin: 0;
-  //     display: flex;
-
-  //   }
-  // }
 }
 
 /* small tablet styles */
