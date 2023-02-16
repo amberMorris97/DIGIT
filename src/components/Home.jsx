@@ -4,15 +4,18 @@ import axios from 'axios';
 import Reaptcha from 'reaptcha';
 import { Button, Paper } from '@mui/material/';
 import { fetchToken, removeArtist } from '../redux/actions/spotifyApiActions';
+import { submitArtist } from '../redux/actions/appApiActions';
 import Search from './Search.jsx';
 import Submissions from './Submissions.jsx';
 import { ArtistSelections, PrimaryArtist } from './ArtistSelections.jsx';
 import { ArtistProfileCard } from './ArtistProfileCard.jsx';
+import ArtistList from './ArtistList.jsx';
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { img, name, id } = useSelector(state => state.spotifyApiReducer.primaryArtist);
+  const artists = useSelector(state => state.spotifyApiReducer.artists);
+  const { img, name, id, uri } = useSelector(state => state.spotifyApiReducer.primaryArtist);
 
   const [captchaToken, setCaptchaToken] = useState(null);
   const [view, setView] = useState(0);
@@ -38,9 +41,14 @@ const Home = () => {
   const handleMatching = () => setView(view + 1);
 
   const handleSubmit = () => {
-    setView('submission');
+    setView(3);
+
+    const primaryArtist = { id, uri, name }
+
+    const data = { primaryArtist, artists };
 
     // dispatch submission sent
+    dispatch(submitArtist(data));
     // check for success/fail redux state
 
     // error handling for failed submissions
@@ -82,6 +90,8 @@ const Home = () => {
     </section>
   );
 
+  const displayMatches = artists.length > 0 && ( <ArtistList artists={artists} /> );
+
   const startView = (
     <div className="search-section">
       <Search />
@@ -97,12 +107,15 @@ const Home = () => {
         <h4>Choose {count} more artists that match this vibe</h4>
         <Search view={'matching'} setCount={() => setCount(count - 1)} />
         <ArtistProfileCard id={id} img={img} name={name} />
+        {displayMatches}
       </>}
 
       {count <= 0 &&
       <>
-        <h4>Ready to submit?</h4>
+        <h4 className="ready-submit-title">Ready to submit?</h4>
         <Button variant="text" onClick={handleSubmit}>Submit</Button>
+        <ArtistProfileCard id={id} img={img} name={name} />
+        {displayMatches}
       </>}
 
       <Button variant="text" onClick={handlePrevious}>Previous</Button>

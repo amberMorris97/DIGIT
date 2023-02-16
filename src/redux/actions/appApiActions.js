@@ -8,18 +8,21 @@ import {
 
  export const submitArtist = (data) => async (dispatch, getState) => {
   const { primaryArtist, artists } = data;
-  const { id, url, uri, name } = primaryArtist;
+  const { id, uri, name } = primaryArtist;
 
-  const body = { id, url, uri, name, artists };
+  const body = { id, uri, name, artists };
 
   const response = await axios.post('/submitArtist', body);
 
-  console.log(response);
+  if (response.status === 200) {
+    return dispatch({ type: SUBMIT_ARTISTS_SUCCESS, payload: true });
+  }
 
-  // if (response.status === 200) {
-  //   return dispatch({ type: SUBMIT_ARTISTS_SUCCESS, payload: true });
-  // }
+  return dispatch({ type: SUBMIT_ARTISTS_FAILURE, payload: true });
+};
 
-  // return dispatch({ type: SUBMIT_ARTISTS_FAILURE, payload: true });
+export const submitEmail = (email) => async (dispatch, getState) => {
+
+  const response = await axios.post('/email', email);
 };
 

@@ -16,6 +16,10 @@ body,p,a,button{
 body{
   background: var(--primary);
   overflow-x: hidden;
+
+  .error {
+    color: red;
+  }
 }
 
 /* fonts */

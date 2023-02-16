@@ -8,6 +8,7 @@ import {
   removeArtist } from '../redux/actions/spotifyApiActions';
 import DisplayArtists from './DisplayArtists.jsx';
 import { verifyPrimaryArtist, isDuplicate } from './helpers/verify';
+import { ARTIST_TOO_POPULAR, ARTIST_DUPLICATE } from './helpers/errors';
 import axios from 'axios';
 
 const Search = ({ view, count, setCount }) => {
@@ -111,18 +112,13 @@ const Search = ({ view, count, setCount }) => {
       value={artistName}
     />);
 
-
-
   return (
     <div className="search-bar-container">
       {artists.length < 4 && view !== 'matching'
           && artists.length < 1 && <InputLabel htmlFor="name">Search for the artist you want to feature</InputLabel>}
-
         {searchInput}
-      {/* {!primaryArtistValid.current && artists.length <= 0 && <span>Artist popularity is too high</span>}
-      {checkDupe.current && <span>Artist has already been selected</span>} */}
-
-      { /* Re factor to use material UI form field */ }
+      {!primaryArtistValid.current && artists.length <= 0 && <span className="error">{ARTIST_TOO_POPULAR}</span>}
+      {checkDupe.current && <span className="error">{ARTIST_DUPLICATE}</span>}
 
       {searchResults[0] &&  <DisplayArtists topResult={searchResults[0]} artists={searchResults} handleSelect={handleSelect} />}
     </div>

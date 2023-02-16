@@ -50,9 +50,9 @@ app.get('/search', async (req, res) => {
 });
 
 app.post('/submitArtist', async (req, res) => {
-  const { url, uri, id, name, artists } = req.body;
+  const { uri, id, name, artists } = req.body;
 
-  console.log(url, uri, id, artists, name);
+  console.log(uri, id, artists, name);
 });
 
 module.exports = app;
