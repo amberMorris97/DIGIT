@@ -17,9 +17,13 @@ const Home = () => {
   const artists = useSelector(state => state.spotifyApiReducer.artists);
   const { img, name, id, uri } = useSelector(state => state.spotifyApiReducer.primaryArtist);
 
+  const submitArtistsSuccess = useSelector(state => state.appApiReducer.submitArtistSuccess);
+  const submitArtistsFailure = useSelector(state => state.appApiReducer.submitArtistFailure);
+
   const [captchaToken, setCaptchaToken] = useState(null);
   const [view, setView] = useState(0);
   const [count, setCount] = useState(3);
+  const [error, setError] = useState(false);
 
   const views = ['home', 'start', 'matching', 'submission'];
 
@@ -27,7 +31,9 @@ const Home = () => {
 
   useEffect(async() => {
     dispatch(fetchToken());
-  }, []);
+    submitArtistsSuccess && setView(3);
+    submitArtistsFailure && setError(true);
+  }, [submitArtistsSuccess, submitArtistsFailure]);
 
   const verify = () => {
     captchaRef.current.getResponse()
@@ -41,17 +47,10 @@ const Home = () => {
   const handleMatching = () => setView(view + 1);
 
   const handleSubmit = () => {
-    setView(3);
-
     const primaryArtist = { id, uri, name }
-
     const data = { primaryArtist, artists };
 
-    // dispatch submission sent
     dispatch(submitArtist(data));
-    // check for success/fail redux state
-
-    // error handling for failed submissions
   }
 
   const handlePrevious = () => {
@@ -104,9 +103,9 @@ const Home = () => {
     <div className="matching-section">
       {count > 0 &&
       <>
-        <h4>Choose {count} more artists that match this vibe</h4>
+        {count === 1 ? <h4>Choose {count} more artist that matches this vibe</h4> : <h4>Choose {count} more artists that match this vibe</h4>}
         <Search view={'matching'} setCount={() => setCount(count - 1)} />
-        <ArtistProfileCard id={id} img={img} name={name} />
+        <ArtistProfileCard id={id} img={img} name={name} view="matching" />
         {displayMatches}
       </>}
 
@@ -118,7 +117,9 @@ const Home = () => {
         {displayMatches}
       </>}
 
-      <Button variant="text" onClick={handlePrevious}>Previous</Button>
+      {error && <h4>Error submitting artists, please try again.</h4>}
+
+      <Button className="previous-btn" variant="text" onClick={handlePrevious}>Previous</Button>
     </div>
   );
 

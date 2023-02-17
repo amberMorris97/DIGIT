@@ -53,6 +53,12 @@ app.post('/submitArtist', async (req, res) => {
   const { uri, id, name, artists } = req.body;
 
   console.log(uri, id, artists, name);
+
+  res.sendStatus(200);
+});
+
+app.post('/submitEmail', async (req, res) => {
+  res.sendStatus(200);
 });
 
 module.exports = app;

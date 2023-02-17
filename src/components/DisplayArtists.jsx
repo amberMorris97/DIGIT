@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import { ArtistProfileCard } from './ArtistProfileCard.jsx';
 
 const DisplayArtists = ({ topResult, artists, handleSelect }) => {
-  topResult.img = topResult.images[0].url;
+  topResult.img = topResult.images[0]?.url;
   const { id, url, uri, name, img, popularity } = topResult;
 
   return (
