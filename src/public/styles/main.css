@@ -18,9 +18,6 @@ body {
   background: white;
   overflow-x: hidden;
 }
-body .error {
-  color: red;
-}
 
 /* fonts */
 body {
