@@ -15,11 +15,10 @@ import {
   const response = await axios.post('/submitArtist', body);
 
   if (response.status === 200) {
-    dispatch({ type: SUBMIT_ARTISTS_SUCCESS, payload: true });
-    return;
+    return dispatch({ type: SUBMIT_ARTISTS_SUCCESS, payload: true });
   }
 
-  dispatch({ type: SUBMIT_ARTISTS_FAILURE, payload: true });
+  return dispatch({ type: SUBMIT_ARTISTS_FAILURE, payload: true });
 };
 
 export const submitEmail = (email) => async (dispatch, getState) => {

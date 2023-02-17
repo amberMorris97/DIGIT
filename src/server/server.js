@@ -52,13 +52,30 @@ app.get('/search', async (req, res) => {
 app.post('/submitArtist', async (req, res) => {
   const { uri, id, name, artists } = req.body;
 
-  console.log(uri, id, artists, name);
+  const data = {
+    id,
+    uri,
+    artist: name,
+    match1: artists[0].id,
+    match2: artists[1].id,
+    match3: artists[2].id,
+  };
 
-  res.sendStatus(200);
+  const response = await axios.post(`${DEV_URL}/add`, data);
+
+  if (response.data.status === 200) {
+    res.sendStatus(200);
+  }
 });
 
 app.post('/submitEmail', async (req, res) => {
-  res.sendStatus(200);
+  const { email } = req.body;
+
+  const response = await axios.post(`${DEV_URL}/add_email`, { email });
+
+  if (response.data.status === 200) {
+    res.sendStatus(200);
+  }
 });
 
 module.exports = app;

@@ -111,13 +111,11 @@ const Home = () => {
 
       {count <= 0 &&
       <>
-        <h4 className="ready-submit-title">Ready to submit?</h4>
+        {error ? <h4>Error submitting artists, please try again.</h4> : <h4 className="ready-submit-title">Ready to submit?</h4>}
         <Button variant="text" onClick={handleSubmit}>Submit</Button>
         <ArtistProfileCard id={id} img={img} name={name} />
         {displayMatches}
       </>}
-
-      {error && <h4>Error submitting artists, please try again.</h4>}
 
       <Button className="previous-btn" variant="text" onClick={handlePrevious}>Previous</Button>
     </div>

@@ -19,7 +19,7 @@ const Submissions = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(submitEmail(email));
+    dispatch(submitEmail({ email }));
 
     setEmail('');
   }
