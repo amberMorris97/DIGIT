@@ -1,0 +1,130 @@
+/* variables */
+:root {
+  --primary: #010101;
+  --secondarytext: #A37CF0;
+  --primarytext: #E6DDD6;
+  --secondary: #6834D4;
+}
+
+/* reset */
+body, p, a, button {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+/* base styles */
+body {
+  background: white;
+  overflow-x: hidden;
+}
+body .error {
+  color: red;
+}
+
+/* fonts */
+body {
+  font-family: "Helvetica";
+  color: var(--primarytext);
+}
+
+/* mobile styles */
+body {
+  /**-----reusable component styles----- */
+  /**----------END--------- */
+}
+body .artist-profile-card .MuiTypography-h5 {
+  font-size: medium;
+  text-align: left;
+  font-weight: bold;
+}
+body .artist-profile-card .MuiPaper-root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  padding: 0 1rem;
+  margin: 0;
+  background-color: rgba(230, 221, 214, 0.2);
+  color: var(--primarytext);
+}
+body .artist-profile-card .MuiPaper-root .MuiCardContent-root {
+  align-items: flex-start;
+}
+body .search-bar-container .MuiInputBase-root {
+  background-color: var(--secondarytext);
+  width: 75%;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+body .header-title {
+  color: var(--secondarytext);
+  text-align: center;
+  padding: 2rem 0;
+}
+body .home-view {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(autofit, minmax(240px, 1fr));
+  grid-gap: 1rem;
+  padding: 0 2rem;
+}
+body .home-view .MuiPaper-root {
+  background-color: rgba(104, 53, 212, 0.5);
+  padding: 2rem;
+  font-size: small;
+  color: var(--primarytext);
+  font-weight: bold;
+}
+body .search-section {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+body .search-section .MuiFormLabel-root {
+  color: var(--primarytext);
+  padding: 0 1rem;
+  font-weight: bold;
+}
+body .search-section .MuiInputBase-root {
+  background-color: var(--secondarytext);
+  width: 75%;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+body .search-section div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body .matching-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "title title" "search search" "matches matches" "primary primary";
+  justify-items: center;
+}
+body .matching-section .MuiInputBase-root {
+  background-color: var(--secondarytext);
+  width: 75%;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+body .matching-section .MuiInputBase-input {
+  background-color: var(--secondarytext);
+  font-family: "Helvetica";
+}
+body .matching-section h4 {
+  grid-area: title;
+}
+body .matching-section .search-bar-container {
+  grid-area: search;
+}
+body .matching-section .artist-profile-card {
+  grid-area: primary;
+}
+
+/* small tablet styles */
+/* large tables and laptops */
+/* desktop styles *//*# sourceMappingURL=main.css.map */

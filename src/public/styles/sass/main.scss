@@ -14,7 +14,8 @@ body,p,a,button{
 
 /* base styles */
 body{
-  background: var(--primary);
+  // background: var(--primary);
+  background: white;
   overflow-x: hidden;
 
   .error {
@@ -124,19 +125,31 @@ body{
       "search search"
       "matches matches"
       "primary primary";
-    align-items: center;
+    justify-items: center;
 
-      h4{
-        grid-area: title;
-      }
+    .MuiInputBase-root{
+      background-color: var(--secondarytext);
+      width: 75%;
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
 
-      .search-bar-container{
-        grid-area: search;
-      }
+    .MuiInputBase-input{
+      background-color: var(--secondarytext);
+      font-family: 'Helvetica';
+    }
 
-      .artist-profile-card{
-        grid-area: primary;
-      }
+    h4{
+      grid-area: title;
+    }
+
+    .search-bar-container{
+      grid-area: search;
+    }
+
+    .artist-profile-card{
+      grid-area: primary;
+    }
 
   }
 
