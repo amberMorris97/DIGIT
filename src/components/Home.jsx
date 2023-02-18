@@ -70,11 +70,12 @@ const Home = () => {
   const homeView = (
     <section className="home-view">
       <Paper>
-        In the last few years, the music industry has changed drastically due to social media greatly expanding music consumption. This has caused many smaller artists/musicians to progressively lose the ability to reach a broadened audience. Resolving this issue would benefit independent artists, as well as the over saturation within the music industry.
+        For artists, successfully promoting their music on social media, more often than not, requires them to already be or become a full-time content creator. This makes it difficult for artists to align their focus. A good artist shouldn&apos;t have to rely on making non-musical content to reach their desired audience.
       </Paper>
 
       <Paper>
-        The final product will be a web application that allows up and coming musicians to reach a broader audience by recommending these “emerging” artists based on results from a machine learning model.
+      The final product will be an application that supports independent artists by using a Machine Learning model to recommend them to users based on a variety of data. The purpose of this website is to collect a starter set of data to later train the model with. To be a contributor, you&apos;ll begin by selecting the up & coming artist you&apos;d like to promote. &#40;Of course, it can be you!&#41;. The next step is to select 3 more artists you believe share the same audience as the first artist you chose, and that&apos;s it!
+
       </Paper>
 
       {/* <Button disabled={!captchaToken} onClick={handleStart}>Next</Button> */}
