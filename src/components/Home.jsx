@@ -75,11 +75,9 @@ const Home = () => {
 
       <Paper>
       The final product will be an application that supports independent artists by using a Machine Learning model to recommend them to users based on a variety of data. The purpose of this website is to collect a starter set of data to later train the model with. To be a contributor, you&apos;ll begin by selecting the up & coming artist you&apos;d like to promote. &#40;Of course, it can be you!&#41;. The next step is to select 3 more artists you believe share the same audience as the first artist you chose, and that&apos;s it!
-
       </Paper>
 
-      {/* <Button disabled={!captchaToken} onClick={handleStart}>Next</Button> */}
-      <Button onClick={handleStart}>Next</Button>
+      <Button disabled={!captchaToken} onClick={handleStart}>Next</Button>
       <div className="captcha-container">
         <Reaptcha
           sitekey={process.env.REACT_APP_SITE_KEY}
