@@ -63,7 +63,7 @@ body .search-bar-container .MuiInputBase-root {
 body .header-title {
   color: var(--secondarytext);
   text-align: center;
-  padding: 2rem 0;
+  padding: 1rem;
 }
 body .home-view {
   display: grid;
