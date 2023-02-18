@@ -11,7 +11,6 @@ export const PrimaryArtist = ({ id, img, name }) => {
     <div className="primary-artist-choice-container">
       <h4>You chose:</h4>
       <ArtistProfileCard id={id} img={img} name={name} />
-      {/**Link to artist page on spotify? probably yea*/}
       <h4>{name}</h4>
     </div>
   );
@@ -35,11 +34,3 @@ export const ArtistSelections = () => {
     </div>
   );
 };
-
-/**
- * Consider adding links in
- * the following places:
- * <PrimaryArtist /> "You chose <name>"
- * <ArtistSelections /> on li elements
- * <DisplayResults /> search result
- */

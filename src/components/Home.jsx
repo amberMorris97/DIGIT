@@ -106,7 +106,7 @@ const Home = () => {
       <>
         {count === 1 ? <h4>Choose {count} more artist that matches this vibe</h4> : <h4>Choose {count} more artists that match this vibe</h4>}
         <Search view={'matching'} setCount={() => setCount(count - 1)} />
-        <ArtistProfileCard id={id} img={img} name={name} view="matching" />
+        <ArtistProfileCard id={id} img={img} name={name} uri={uri} />
         {displayMatches}
       </>}
 
@@ -114,7 +114,7 @@ const Home = () => {
       <>
         {error ? <h4>Error submitting artists, please try again.</h4> : <h4 className="ready-submit-title">Ready to submit?</h4>}
         <Button variant="text" onClick={handleSubmit}>Submit</Button>
-        <ArtistProfileCard id={id} img={img} name={name} />
+        <ArtistProfileCard id={id} img={img} name={name} uri={uri} />
         {displayMatches}
       </>}
 

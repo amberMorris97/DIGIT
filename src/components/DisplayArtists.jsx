@@ -12,7 +12,7 @@ const DisplayArtists = ({ topResult, artists, handleSelect }) => {
 
   return (
     <div className="search-result-display">
-      <ArtistProfileCard id={id} img={img} name={name} />
+      <ArtistProfileCard id={id} img={img} name={name} uri={uri} />
       <br />
       <Button variant="outlined" onClick={(e) => handleSelect(e, id, img, url, popularity, uri, name)}>Select {topResult.name}</Button>
   </div>);

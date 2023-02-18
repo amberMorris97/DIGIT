@@ -63,8 +63,6 @@ const Search = ({ view, count, setCount }) => {
 
     const data = { id, img, url, uri, name };
 
-    console.log(data);
-
     /** checks for valid selections */
     const verify = verifyPrimaryArtist(popularity);
     const isDupe = isDuplicate(primaryArtist, artists, id);

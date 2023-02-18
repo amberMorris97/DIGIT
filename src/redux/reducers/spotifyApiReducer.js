@@ -3,7 +3,6 @@ import {
   PRIMARY_ARTIST,
   UPDATE_PRIMARY_ARTIST,
   REMOVE_PRIMARY_ARTIST,
-  UPDATE_USER_STEP,
   ADD_ARTIST,
   REMOVE_ARTIST
  } from '../types';
@@ -51,12 +50,6 @@ const spotifyApiReducer = (state = initialState, action) => {
       return {
         ...state,
         primaryArtist: action.payload,
-      }
-    }
-    case UPDATE_USER_STEP: {
-      return {
-        ...state,
-        userStep: action.payload,
       }
     }
     default:
