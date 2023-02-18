@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, Button } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import CardMedia from '@mui/material/CardMedia';
-import Box from '@mui/material/Box';
-
+import React from 'react';
+import Button from '@mui/material/Button';
 import { ArtistProfileCard } from './ArtistProfileCard.jsx';
 
 const DisplayArtists = ({ topResult, artists, handleSelect }) => {

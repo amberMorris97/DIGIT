@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Card, CardMedia, CaButton, Typography } from '@mui/material';
-
 import { ArtistProfileCard } from './ArtistProfileCard.jsx';
 
 export const PrimaryArtist = ({ id, img, name }) => {
