@@ -91,6 +91,11 @@ body{
       color: var(--primarytext);
       font-weight: bold;
     }
+
+    button{
+      color: var(--secondarytext);
+      font-weight: bold;
+    }
   }
 
   .search-section{
@@ -127,20 +132,15 @@ body{
   }
 
   .matching-section{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      "title title"
-      "search search"
-      "matches matches"
-      "primary primary";
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     button{
       background: none;
-      border-color: #E6DDD6;
       font-family: 'Helvetica';
       color: var(--secondarytext);
+      font-weight: bold;
     }
 
     .previous-btn{
@@ -148,6 +148,7 @@ body{
       color: var(--secondary);
       font-family: 'Helvetica';
       margin-top: 5%!important;
+      font-weight: bold;
     }
 
     .MuiInputBase-root{
@@ -180,7 +181,6 @@ body{
       .artist-profile-card{
         margin: auto;
         width: max-content;
-        margin-left: 16%;
       }
     }
 
@@ -196,34 +196,152 @@ body{
     flex-direction: column;
     align-items: center;
 
-    .MuiFormLabel-root{
-      color: var(--primarytext);
-      padding: 0 1rem;
-      font-weight: bold;
-      font-size: small;
-    }
-
     .MuiInputBase-root{
       background-color: var(--secondarytext);
-      width: 75%;
-      margin: 0.5rem;
-      padding: 0.5rem;
+    }
+
+    h4{
+      font-size: smaller;
+      font-weight: 100;
+    }
+
+    button{
+      font-weight: bold;
+      font-size: large;
+      color: var(--secondary);
     }
   }
 
 }
 
 /* small tablet styles */
-@media screen and (min-width: 620px){
+@media screen and (min-width: 540px){
+  body {
+    .home-view{
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+    .artist-profile-card{
+      .MuiPaper-root{
+        margin: inherit;
+      }
+    }
+    .matching-section{
+      .MuiInputBase-root{
+        width: 50%;
+      }
 
+      .artist-profile-card{
+        margin-top: auto!important;
+      }
+    }
+  }
 }
 
 /* large tables and laptops */
-@media screen and (min-width: 960px){
+@media screen and (min-width: 820px){
+  body {
+    .home-view{
+      display: flex;
+      flex-direction: column;
+      width: 75%;
+      margin: auto;
 
+      button{
+        color: var(--secondarytext);
+        font-weight: bold;
+        font-size: x-large;
+      }
+    }
+
+    .matching-section{
+      .MuiInputBase-root{
+        width: 25%;
+      }
+
+      button{
+        font-weight: bold;
+        font-size: large;
+      }
+
+      .artist-profile-card{
+        margin-top: auto!important;
+      }
+    }
+
+    .submission-view{
+      button{
+        font-weight: bold;
+        font-size: large;
+        color: var(--secondary);
+      }
+      h4{
+        font-weight: lighter;
+      }
+      .MuiInputBase-root{
+        width: 100%;
+      }
+    }
+
+  }
 }
 
 /* desktop styles */
 @media screen and (min-width: 1200px){
+  body{
+    .home-view{
+      width: 50%;
 
+      button{
+        font-size: x-large;
+      }
+
+      .MuiPaper-root{
+        font-size: large;
+      }
+    }
+
+    .search-section{
+      .MuiFormLabel-root{
+        font-size: x-large;
+      }
+      button{
+        font-weight: bold;
+        font-size: large;
+      }
+    }
+
+    .matching-section{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      li{
+        font-size: x-large;
+      }
+
+      .MuiInputBase-root{
+        width: 25%;
+      }
+      .artist-profile-card{
+        margin-top: auto;
+      }
+
+      .previous-btn{
+        margin-top: auto!important;
+      }
+
+      .search-bar-container
+      .artist-profile-card{
+        margin-left: auto;
+      }
+    }
+
+    .submission-view{
+      h4{
+        font-size: medium;
+      }
+    }
+  }
 }

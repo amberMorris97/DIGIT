@@ -32,6 +32,7 @@ const Search = ({ view, count, setCount }) => {
 
   const handleOnChange = async (e) => {
     primaryArtistValid.current = true;
+    checkDupe.current = false;
 
     const { name, value } = e.target;
 

@@ -79,6 +79,10 @@ body .home-view .MuiPaper-root {
   color: var(--primarytext);
   font-weight: bold;
 }
+body .home-view button {
+  color: var(--secondarytext);
+  font-weight: bold;
+}
 body .search-section {
   display: grid;
   align-items: center;
@@ -108,22 +112,22 @@ body .search-section div {
   justify-content: center;
 }
 body .matching-section {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: "title title" "search search" "matches matches" "primary primary";
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body .matching-section button {
   background: none;
-  border-color: #E6DDD6;
   font-family: "Helvetica";
   color: var(--secondarytext);
+  font-weight: bold;
 }
 body .matching-section .previous-btn {
   background: none;
   color: var(--secondary);
   font-family: "Helvetica";
   margin-top: 5% !important;
+  font-weight: bold;
 }
 body .matching-section .MuiInputBase-root {
   background-color: var(--secondarytext);
@@ -152,7 +156,6 @@ body .matching-section .search-bar-container .artist-profile-card {
   margin: auto;
   width: -moz-max-content;
   width: max-content;
-  margin-left: 16%;
 }
 body .matching-section .artist-profile-card {
   grid-area: primary;
@@ -163,19 +166,110 @@ body .submission-view {
   flex-direction: column;
   align-items: center;
 }
-body .submission-view .MuiFormLabel-root {
-  color: var(--primarytext);
-  padding: 0 1rem;
-  font-weight: bold;
-  font-size: small;
-}
 body .submission-view .MuiInputBase-root {
   background-color: var(--secondarytext);
-  width: 75%;
-  margin: 0.5rem;
-  padding: 0.5rem;
+}
+body .submission-view h4 {
+  font-size: smaller;
+  font-weight: 100;
+}
+body .submission-view button {
+  font-weight: bold;
+  font-size: large;
+  color: var(--secondary);
 }
 
 /* small tablet styles */
+@media screen and (min-width: 540px) {
+  body .home-view {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  body .artist-profile-card .MuiPaper-root {
+    margin: inherit;
+  }
+  body .matching-section .MuiInputBase-root {
+    width: 50%;
+  }
+  body .matching-section .artist-profile-card {
+    margin-top: auto !important;
+  }
+}
 /* large tables and laptops */
-/* desktop styles *//*# sourceMappingURL=main.css.map */
+@media screen and (min-width: 820px) {
+  body .home-view {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: auto;
+  }
+  body .home-view button {
+    color: var(--secondarytext);
+    font-weight: bold;
+    font-size: x-large;
+  }
+  body .matching-section .MuiInputBase-root {
+    width: 25%;
+  }
+  body .matching-section button {
+    font-weight: bold;
+    font-size: large;
+  }
+  body .matching-section .artist-profile-card {
+    margin-top: auto !important;
+  }
+  body .submission-view button {
+    font-weight: bold;
+    font-size: large;
+    color: var(--secondary);
+  }
+  body .submission-view h4 {
+    font-weight: lighter;
+  }
+  body .submission-view .MuiInputBase-root {
+    width: 100%;
+  }
+}
+/* desktop styles */
+@media screen and (min-width: 1200px) {
+  body .home-view {
+    width: 50%;
+  }
+  body .home-view button {
+    font-size: x-large;
+  }
+  body .home-view .MuiPaper-root {
+    font-size: large;
+  }
+  body .search-section .MuiFormLabel-root {
+    font-size: x-large;
+  }
+  body .search-section button {
+    font-weight: bold;
+    font-size: large;
+  }
+  body .matching-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body .matching-section li {
+    font-size: x-large;
+  }
+  body .matching-section .MuiInputBase-root {
+    width: 25%;
+  }
+  body .matching-section .artist-profile-card {
+    margin-top: auto;
+  }
+  body .matching-section .previous-btn {
+    margin-top: auto !important;
+  }
+  body .matching-section .search-bar-container .artist-profile-card {
+    margin-left: auto;
+  }
+  body .submission-view h4 {
+    font-size: medium;
+  }
+}/*# sourceMappingURL=main.css.map */
