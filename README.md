@@ -1,4 +1,4 @@
-# FYNF
+# DIG IT
 
 Currently in development, Find Your New Fav is a software application intended to support up & coming musicians with their social media presence.
 
