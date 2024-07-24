@@ -3,15 +3,23 @@ const path = require('path');
 const axios = require('axios');
 
 const { CLIENT_ID, CLIENT_SECRET, SPOTIFY_TOKEN, SPOTIFY_SEARCH } = require('./secrets');
+const userController = require('./controllers/userController');
 
 const app = express();
 
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, '../public')));
+app.use('/users', userController);
 
 /* temporary local host URL for python server */
 const DEV_URL = 'http://127.0.0.1:5000';
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'), (err) => {
+    if (err) res.status(500).send(err);
+  });
+});
+
 
 app.get('/fetchToken', async (req, res) => {
   const authParams = {
@@ -77,5 +85,6 @@ app.post('/submitEmail', async (req, res) => {
     res.sendStatus(200);
   }
 });
+
 
 module.exports = app;

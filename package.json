@@ -16,11 +16,19 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.16.4",
     "@mui/material": "^5.11.8",
+    "@reduxjs/toolkit": "^2.2.1",
     "babel-plugin-import": "^1.13.3",
     "buffer": "^6.0.3",
+    "css-loader": "^7.1.2",
     "dotenv": "^16.0.3",
+    "firebase": "^10.8.0",
+    "firebase-tools": "^13.3.0",
+    "firebaseui": "^6.1.0",
+    "mongoose": "^8.5.1",
     "node-sass": "^8.0.0",
+    "pg": "^8.11.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -32,6 +40,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "sass": "^1.58.0",
+    "sass-loader": "^14.2.1",
     "webpack": "^5.38.1"
   },
   "devDependencies": {
@@ -42,7 +51,7 @@
     "babel-loader": "^8.2.2",
     "concurrently": "^6.2.0",
     "nodemon": "^2.0.7",
-    "npm": "^7.16.0",
+    "npm": "^10.8.2",
     "style-loader": "^3.1.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2"

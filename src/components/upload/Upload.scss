@@ -1,0 +1,26 @@
+/* variables */
+:root{
+  --primary: #010101;
+  --secondarytext: #A37CF0;
+  --primarytext: #E6DDD6;
+  --secondary: #6834D4;
+  --arialblk: 'Arial Black', sans-serif;
+}
+/* reset */
+body,p,a,button{
+  margin: 0;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-header {
+  font-family: var(--arialblk) !important;
+  text-align: center;
+  margin-top: 25px;
+  padding: 25px;
+}

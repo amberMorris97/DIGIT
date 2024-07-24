@@ -56,6 +56,8 @@ const Search = ({ view, count, setCount }) => {
     if (results) {
       setSearchResults([...results.data.artists.items]);
     };
+
+    console.log(searchResults)
   }
 
   const handleSelect = (e, id, img, url, popularity, uri, name) => {

@@ -1,0 +1,75 @@
+/* Variables */
+:root {
+  --primary: #010101;
+  --inputbg: #181818;
+  --secondarytext: #A37CF0;
+  --primarytext: #E6DDD6;
+  --secondary: #6834D4;
+  --placeholder: #A37CF0;
+  --white: #ffffff;
+  --black: #000000;
+  --arialblack: 'Arial Black', sans-serif;
+}
+
+/* Reset */
+body, p, a, button {
+  margin: 0;
+  padding: 15px;
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--primary);
+  color: var(--primarytext);
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.MuiInputBase-input {
+  background-color: var(--inputbg);
+  border-radius: 10px;
+  color: var(--primarytext);
+}
+
+.MuiFormLabel-root {
+  color: var(--white);
+  padding: 10px;
+}
+
+.MuiButton-contained:hover {
+  background-color: var(--secondary), 10%;
+}
+
+.signup-header {
+  font-family: 'Arial Black', sans-serif;
+  text-align: center;
+}
+
+.brand-message {
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  text-align: center;
+  color: var(--secondarytext);
+  margin-top: 10px;
+}
+
+.MuiInputBase-root {
+  color: var(--white) !important;
+}
+
+.MuiButtonBase-root {
+  color: var(--secondary) !important;
+}
+
+.next-button {
+  display: flex;
+  justify-content: center;
+
+  .MuiButton-contained {
+    background-color: var(--secondary);
+    color: var(--white) !important;
+    font-family: var(--arialblack);
+    width: 50vw;
+  }
+}
+

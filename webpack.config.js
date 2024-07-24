@@ -33,11 +33,19 @@ module.exports = () => {
         {
           test: /\.css$/i,
           use: ["style-loader", 'css-loader'],
-        }
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            'style-loader', // Injects CSS into the DOM
+            'css-loader',   // Resolves @import and url() in CSS files
+            'sass-loader'   // Compiles Sass/SCSS to CSS
+          ],
+        },
       ]
     },
     plugins: [
-      new webpack.DefinePlugin(envKeys)
+      new webpack.DefinePlugin(envKeys),
     ],
     devServer: { historyApiFallback: true }
   }
