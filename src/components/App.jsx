@@ -2,7 +2,12 @@ import React from 'react';
 import Header from './Header.jsx';
 import Home from './Home.jsx';
 import SignUp from './SignUp.jsx';
+import Login from './Login.jsx';
 import Upload from './upload/Upload.jsx';
+import ArtistProfile from './ArtistProfile.jsx';
+import WaitlistForm from './WaitlistForm.jsx';
+import ConfirmationPage from './ConfirmationPage.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
 import { BrowserRouter as Router, Route, useHistory, Switch } from 'react-router-dom';
 
 
@@ -41,8 +46,12 @@ const App = () => {
         <Header />
         <Switch>
           {/* Define the /register route and associate it with the SetUsername component */}
+          <Route path="/waitlist" component={WaitlistForm} />
+          <ProtectedRoute path="/confirmation" component={ConfirmationPage} />
+          <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/upload" component={Upload} />
+          <Route path="/artistProfile" component={ArtistProfile} />
           {/* Other routes */}
         </Switch>
       </Router>

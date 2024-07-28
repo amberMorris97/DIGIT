@@ -8,7 +8,9 @@
   --placeholder: #A37CF0;
   --white: #ffffff;
   --black: #000000;
+  --error: #cc0000;
   --arialblack: 'Arial Black', sans-serif;
+  --arial: 'Arial', sans-serif;
 }
 
 /* Reset */
@@ -71,5 +73,22 @@ body {
     font-family: var(--arialblack);
     width: 50vw;
   }
+}
+
+#socialLink-helper-text,
+#auth-error {
+  text-align: center;
+}
+
+#socialLink-helper-text {
+  color: var(--white);
+}
+
+#auth-error {
+  color: var(--error);
+  font-family: var(--arial);
+  display: flex;
+  justify-content: center;
+  font-weight: lighter;
 }
 

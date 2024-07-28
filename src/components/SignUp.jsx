@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { app, analytics, auth, db } from '../firebase';
+import { setDoc, doc } from 'firebase/firestore';
 import {
   Box,
   TextField,
@@ -17,26 +20,41 @@ import './SignUp.scss';
 const SignUp = () => {
   const [formData, setFormData] = useState({
     name: '',
-    artistName: '',
+    password: '',
     email: '',
-    socialLink: ''
+    socialLink: '',
   });
+  const [authError, setAuthError] = useState('');
 
   const history = useHistory();
 
   const handleChange = (e) => {
+    setAuthError('');
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log(formData);
-    history.push('/upload');
+
+    try {
+      await createUserWithEmailAndPassword(auth, email.value, password.value);
+      const user = auth.currentUser;
+      if (user) {
+        await setDoc(doc(db, "Users", user.uid), {
+          email: user.email,
+          fullName: formData.name,
+          socialLink: formData.socialLink,
+          approved: false,
+        });
+      }
+    } catch (err) {
+      console.log(err.message);
+      setAuthError(err.message.split(' ')[2]);
+    }
   };
 
   return (
@@ -52,7 +70,7 @@ const SignUp = () => {
         <Typography component="h1" variant="h5" className="signup-header">
           Sign Up
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={handleSignUp} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography variant="subtitle1" className="MuiFormLabel-root">
@@ -71,21 +89,6 @@ const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="subtitle1" className="MuiFormLabel-root">
-                Artist or Group Name
-              </Typography>
-              <TextField
-                name="artistName"
-                required
-                fullWidth
-                id="artistName"
-                // placeholder="Artist or Group Name"
-                value={formData.artistName}
-                onChange={handleChange}
-                InputProps={{ className: 'MuiInputBase-input' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" className="MuiFormLabel-root">
                 Email Address
               </Typography>
               <TextField
@@ -97,6 +100,21 @@ const SignUp = () => {
                 value={formData.email}
                 onChange={handleChange}
                 type="email"
+                InputProps={{ className: 'MuiInputBase-input' }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="subtitle1" className="MuiFormLabel-root">
+                password
+              </Typography>
+              <TextField
+                name="password"
+                required
+                fullWidth
+                id="password"
+                // placeholder="Link to social media or published music"
+                value={formData.password}
+                onChange={handleChange}
                 InputProps={{ className: 'MuiInputBase-input' }}
               />
             </Grid>
@@ -136,9 +154,10 @@ const SignUp = () => {
               className="MuiButton-contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              next
+              Sign Up
             </Button>
           </div>
+          <span id="auth-error">{authError}</span>
         </Box>
       </Box>
     </Container>

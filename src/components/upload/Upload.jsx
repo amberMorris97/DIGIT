@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Typography from '@mui/material/Typography';
-import { useHistory } from 'react-router-dom';
 import StepOne from './StepOne.jsx';
 import StepTwo from './StepTwo.jsx';
+import axios from 'axios';
 
 const Upload = () => {
   const [step, setStep] = useState(1);
@@ -10,60 +9,91 @@ const Upload = () => {
     trackName: '',
     trackDesc: '',
     lyrics: '',
-    credits: '',
-    tags: '',
-    license: '',
-    creativeCommons: '',
-    trackISRC: '',
-    releaseDate: ''
+    trackCredits: '',
+    releaseDate: '',
+    track: null, // For the file
   });
 
-  const history = useHistory();
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [e.target.name]: e.target.value,
     });
   };
 
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      track: e.target.files[0],
+    });
+  };
+
+  const handleSubmit = async (e, setUploadProgress) => {
+    e.preventDefault();
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(key, formData[key]);
+    }
+
+    try {
+      const response = await axios.post('/signup', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+          let percent = Math.floor((loaded * 100) / total);
+          setUploadProgress(percent);
+        }
+      });
+
+      if (response.status === 201) {
+        alert('Sign-Up successful');
+        setUploadProgress(0); // Reset progress after successful upload
+      } else {
+        alert('Sign-Up failed');
+        setUploadProgress(0); // Reset progress on failure
+      }
+    } catch (error) {
+      console.error('Error during sign-up:', error);
+      alert('Sign-Up failed');
+      setUploadProgress(0); // Reset progress on failure
+    }
+  };
+
   const nextStep = () => {
-    setStep((prevStep) => prevStep + 1);
+    setStep(step + 1);
   };
 
-  const prevStep = () => {
-    setStep((prevStep) => prevStep - 1);
+  const backToSignIn = () => {
+    setStep(step - 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic
-    console.log(formData);
-  };
-
-  // const handleNextStep = (e) => {
-  //   e.preventDefault();
-
-  // }
-
-  const handleBackToSignIn = (e) => {
-    e.preventDefault();
-  }
   return (
-    <div className="upload-container">
-      <div className="upload-header">
-        <Typography component="h1" variant="h5" className="upload-header">
-            Upload Your Music
-        </Typography>
-      </div>
-      {step === 1 ? (
-        <StepOne nextStep={nextStep} formData={formData} handleChange={handleChange} />
-      ) : (
-        <StepTwo prevStep={prevStep} handleSubmit={handleSubmit} formData={formData} handleChange={handleChange} />
+    <div>
+      {step === 1 && (
+        <StepOne
+          backToSignIn={backToSignIn}
+          nextStep={nextStep}
+          handleSubmit={handleSubmit}
+          formData={formData}
+          handleChange={handleChange}
+        />
+      )}
+      {step === 2 && (
+        <StepTwo
+          backToStepOne={backToSignIn}
+          handleSubmit={handleSubmit}
+          formData={formData}
+          handleChange={handleChange}
+          handleFileChange={handleFileChange}
+        />
       )}
     </div>
   );
 };
 
 export default Upload;
+
+
+

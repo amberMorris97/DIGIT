@@ -1,15 +1,22 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
 
+
 const { CLIENT_ID, CLIENT_SECRET, SPOTIFY_TOKEN, SPOTIFY_SEARCH } = require('./secrets');
+const db = require('./database/connection');
 const userController = require('./controllers/userController');
+const waitlistRouter = require('./routes/waitlist');
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/users', userController);
+app.use('/waitlist', waitlistRouter);
 
 /* temporary local host URL for python server */
 const DEV_URL = 'http://127.0.0.1:5000';
@@ -19,7 +26,6 @@ app.get('/*', (req, res) => {
     if (err) res.status(500).send(err);
   });
 });
-
 
 app.get('/fetchToken', async (req, res) => {
   const authParams = {

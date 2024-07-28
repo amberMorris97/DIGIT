@@ -47,7 +47,7 @@ const StepOne = ({ backToSignIn, nextStep, handleSubmit, formData, handleChange 
                 placeholder="(optional)"
                 fullWidth
                 id="trackDesc"
-                value={formData.license}
+                value={formData.trackDesc}
                 onChange={handleChange}
                 multiline
                 rows={4}
@@ -77,9 +77,9 @@ const StepOne = ({ backToSignIn, nextStep, handleSubmit, formData, handleChange 
                 track credits:
               </Typography>
               <TextField
-                name="trackCredits"
+                name="credits"
                 fullWidth
-                id="trackCredits"
+                id="credits"
                 placeholder="(optional)"
                 value={formData.credits}
                 onChange={handleChange}
