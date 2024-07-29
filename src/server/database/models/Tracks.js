@@ -22,6 +22,11 @@ const trackSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  streams: {
+    type: Number,
+    required: true,
+    default: 0
+  }
 });
 
 const Track = mongoose.model('Track', trackSchema);

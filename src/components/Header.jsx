@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <Container maxWidth="sm">
-      <h1 className="header-title">diggit</h1>
+      <h1 className="header-title">DIGGIT</h1>
     </Container>
   );
 }

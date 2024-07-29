@@ -21,6 +21,11 @@ const artistSchema = new Schema({
   bio: {
     type: String,
   },
+  fans: {
+    type: Number,
+    required: true,
+    default: 0,
+  }
   tracks: [
     {
       type: Schema.Types.ObjectId,

@@ -4,7 +4,7 @@ import Home from './Home.jsx';
 import SignUp from './SignUp.jsx';
 import Login from './Login.jsx';
 import Upload from './upload/Upload.jsx';
-import ArtistProfile from './ArtistProfile.jsx';
+import ArtistProfile from './ArtistProfile/ArtistProfile.jsx';
 import WaitlistForm from './WaitlistForm.jsx';
 import ConfirmationPage from './ConfirmationPage.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
